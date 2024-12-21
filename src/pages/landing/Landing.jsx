@@ -38,14 +38,6 @@ const Landing = () => {
         </section>
 
         <section id="shoutout" className="shoutout-section">
-          <h2>Shout Out!</h2>
-          <p>
-            A special shoutout to <strong>Mehul Bansal</strong> for conceptualizing and leading the 
-            development of Campus Society. Your vision is truly making a difference!
-          </p>
-        </section>
-
-        <section id="shoutout" className="shoutout-section">
           <h2>Contact Us</h2>
           <p>
             Got questions? Feel free to reach out at <strong>contact@campussociety.com</strong> or 

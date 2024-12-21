@@ -6,7 +6,7 @@ const Footer = () => {
     <div>
       <footer className="footer">
         <p>&copy; 2024 Campus Society. All rights reserved.</p>
-        <p>Built with ❤️ by Mehul Bansal and the Campus Society Team.</p>
+        <p>Built with ❤️ by The Campus Society Team.</p>
       </footer>
     </div>
   )
