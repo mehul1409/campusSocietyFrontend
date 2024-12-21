@@ -1,0 +1,106 @@
+
+  
+  .spoc-dashboard {
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .add-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .add-button a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .add-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th, table td {
+    text-align: left;
+    padding: 12px;
+  }
+  
+  table th {
+    background-color: #4caf50;
+    color: white;
+    font-weight: bold;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  table td {
+    border: 1px solid #ddd;
+  }
+  
+  /* Button Styling */
+  button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .update-button {
+    background-color: #008cba;
+    color: white;
+  }
+  
+  .update-button:hover {
+    background-color: #007bb5;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background-color: #da190b;
+  }
+  
+  /* Error and Loading States */
+  .loading, .error {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .error {
+    color: red;
+  }
+  

@@ -8,6 +8,8 @@ import Coordinatordashboard from './pages/coordinator/Coordinatordashboard';
 import Spocdashboard from './pages/spoc/Spocdashboard';
 import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import ResetPassword from './pages/forgotPassword/resetPassword/ResetPassword';
+import AddCoordinator from './pages/spoc/AddCoordinator';
+import UpdateHub from './pages/spoc/UpdateHub';
 
 const AppRouter = () => {
     return (
@@ -20,6 +22,9 @@ const AppRouter = () => {
             <Route path='/spoc-dashboard' element={<Spocdashboard />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path='/reset-password' element={<ResetPassword />} />
+            <Route path='/addcoordinator' element={<AddCoordinator/>} />
+            <Route path="/update-hub/:hubId" element={<UpdateHub />} />
+
         </Routes>
     );
 };

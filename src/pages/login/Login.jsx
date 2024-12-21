@@ -72,9 +72,9 @@ const Login = () => {
 
   const getLoginEndpoint = (role) => {
     const endpoints = {
-      spoc: 'http://localhost:8003/spoc/login',
-      coordinator: 'http://localhost:8003/coordinator/login',
-      student: 'http://localhost:8003/student/login',
+      spoc: 'http://localhost:3000/spoc/login',
+      coordinator: 'http://localhost:3000/coordinator/login',
+      student: 'http://localhost:3000/student/login',
     };
     return endpoints[role] || endpoints.student;
   };
