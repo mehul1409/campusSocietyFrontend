@@ -28,13 +28,13 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setLoading(true);
-    
+
     const loginEndpoint = getLoginEndpoint(formData.role);
-    
+
     try {
       const response = await fetch(loginEndpoint, {
         method: 'POST',
@@ -116,11 +116,21 @@ const Login = () => {
       </form>
       <div className="additional-links">
         <button onClick={() => navigate('/register')} className="secondary-button">
-          Don't have an account? Register
+          Don't have an account?
         </button>
         <button onClick={() => navigate('/forgot-password')} className="secondary-button">
           Forgot Password?
         </button>
+      </div>
+      <hr />
+      <div className="mainLogoImage">
+        <div className="aboveimage">
+          "Join the Campus Society — Connect, Collaborate, and Grow Together!"
+        </div>
+        <img src="/mainLogo.png" alt="" />
+        <div className="belowimage">
+          "Proudly developed for the Campus Community with passion and dedication."
+        </div>
       </div>
     </div>
   );
