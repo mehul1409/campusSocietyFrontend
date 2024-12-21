@@ -137,8 +137,18 @@ const Register = () => {
       </form>
 
       <button className="already-account-btn" onClick={() => navigate('/login')}>
-        Already have an account? Log in
+        Already have an account?
       </button>
+      <hr />
+      <div className="mainLogoImage">
+        <div className="aboveimage">
+          "Join the Campus Society — Connect, Collaborate, and Grow Together!"
+        </div>
+        <img src="/mainLogo.png" alt="" />
+        <div className="belowimage">
+          "Proudly developed for the Campus Community with passion and dedication."
+        </div>
+      </div>
     </div>
   );
 };

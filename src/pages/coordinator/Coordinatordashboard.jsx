@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Coordinatordashboard = () => {
+const Studentdashboard = () => {
+  useEffect(() => {
+    const token = localStorage.getItem('coordinatorauthorize');
+
+    if (!token) {
+      window.location.href = '/';
+    }
+  },[])
   return (
     <div>
       coordinator dashboard
@@ -8,4 +15,4 @@ const Coordinatordashboard = () => {
   )
 }
 
-export default Coordinatordashboard
+export default Studentdashboard

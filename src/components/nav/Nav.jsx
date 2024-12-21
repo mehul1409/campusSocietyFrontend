@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
+import logo from '/mainLogo.png'; 
 
 const Nav = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div>
       <header className="header">
-        <h1>Campus Society</h1>
+        <div className="logo-container">
+          <Link to='/' className='redirectAnchorTag'>
+          <img src={logo} alt="Campus Society Logo" className="logo" />
+          <h1>Campus Society</h1>
+          </Link>
+        </div>
         <nav>
-          <ul className="nav-links">
-            <li><Link to="#about">About</Link></li>  {/* Changed to #about */}
-            <li><Link to="#features">Features</Link></li>  {/* Changed to #features */}
-            <li><Link to="#contact">Contact</Link></li>  {/* Changed to #contact */}
+          <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/features">Features</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
           </ul>
         </nav>
-        <div className="auth-buttons">
-          <Link to='/login'>Login</Link>  {/* Changed to /login */}
-          <Link to='/register'>Register</Link>  {/* Changed to /register */}
+        <div className="hamburger" onClick={toggleMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
         </div>
       </header>
     </div>

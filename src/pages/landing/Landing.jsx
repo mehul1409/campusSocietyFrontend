@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Landing.css';
 
 const Landing = () => {
@@ -35,6 +35,8 @@ const Landing = () => {
             With streamlined features, we empower SPOCs to manage activities effectively while ensuring 
             seamless communication between coordinators and students.
           </p>
+
+          <button className='getStartedButton'><Link to='/login'>Get Started</Link></button>
         </section>
 
         <section id="shoutout" className="shoutout-section">
