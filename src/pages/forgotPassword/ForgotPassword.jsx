@@ -11,7 +11,6 @@ const ForgotPassword = () => {
 
     const handleRoleSelection = (e) => {
         setRole(e.target.value);
-        console.log(role);
         setStep(2);
     };
 
@@ -129,10 +128,10 @@ const ForgotPassword = () => {
                         <button type="submit" className="submit-btn">Send Reset Link</button>
                     </form>
 
-                    <p className="back-to-login">
+                    <div className="back-to-login">
                         <div>Remember your password?</div>
                         <div><Link to="/login">Back to Login</Link></div>
-                    </p>
+                    </div>
                     <hr />
                     <div className="mainLogoImage">
                         <div className="aboveimage">

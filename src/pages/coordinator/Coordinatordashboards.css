@@ -1,0 +1,130 @@
+.dashboard-container {
+    color:#333;
+    background-color:white;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    text-align: center;
+    color: #444;
+  }
+  
+  .post-event-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #409843;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .post-event-button-coordinator{
+    width:95% !important ;
+  }
+  
+  .post-event-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  
+  .events-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .event-item {
+    background-color: #fff;
+    width:90%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  
+  .event-item:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+  
+  .event-item h3 {
+    font-size: 1.2rem;
+    margin:3% 0;
+    color: #333;
+  }
+  
+  .event-item p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+    margin: 2px 0;
+  }
+
+  .event-item .date{
+    background:#333;
+    width:fit-content;
+    color:white;
+    font-size: 0.8rem;
+    padding:2px 5px;
+    border-radius: 10px;
+    text-align: end;
+  }
+  
+  .event-actions {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .editDelete{
+    display: flex;
+    margin-right: 5%;
+  }
+  
+  .edit-button,
+  .delete-button {
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding:2% 6%;
+  }
+  
+  .edit-button {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .edit-button:hover {
+    background-color: #1976D2;
+    transform: scale(1.05);
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+  }
+  

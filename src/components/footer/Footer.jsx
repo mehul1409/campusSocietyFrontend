@@ -1,15 +1,47 @@
-import React from 'react'
-import './Footer.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Footer.css';
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="footer">
-        <p>&copy; 2024 Campus Society. All rights reserved.</p>
-        <p>Built with ❤️ by The Campus Society Team.</p>
-      </footer>
-    </div>
-  )
-}
+    <footer className="footer">
+      <div className="footer-content">
+        
+        <div className="footerContentSection">
+        <div className="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><Link to='/about'>About Us</Link></li>
+            <li><Link to='/features'>Features</Link></li>
+            <li><Link to='/contact'>Contact</Link></li>
+            <li><Link to='/login'>Login</Link></li>
+          </ul>
+        </div>
 
-export default Footer
+        <div className="footer-section footer-socials">
+          <h4>Follow Us</h4>
+          <ul className="social-media-links">
+            <li><a href="https://facebook.com/campussociety" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="https://twitter.com/campussociety" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            <li><a href="https://instagram.com/campussociety" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://linkedin.com/company/campussociety" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+        </div>
+        
+        <div className="footer-section contact-footer">
+          <h4>Contact Us</h4>
+          <div>Email: <a href="mailto:contact@campussociety.com">mehulbansalswm1234@gmail.com</a></div>
+          <div>Phone: <a href="tel:+911234567890">+918595139817</a></div>
+        </div>
+        
+      </div>
+      
+      <div className="footer-bottom">
+        <p>&copy; 2024 Campus Society. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

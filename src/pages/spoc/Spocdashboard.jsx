@@ -16,6 +16,11 @@ const Spocdashboard = () => {
   const spocCollegeId = spocDetails.spoc.collegeId; 
 
   useEffect(() => {
+    if (!token) {
+      window.location.href = '/';
+    }
+  },[])
+  useEffect(() => {
     const fetchHubs = async () => {
       try {
         const response = await fetch("http://localhost:8003/api/getAllHubs", {

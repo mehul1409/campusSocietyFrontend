@@ -10,6 +10,12 @@ import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import ResetPassword from './pages/forgotPassword/resetPassword/ResetPassword';
 import AddCoordinator from './pages/spoc/AddCoordinator';
 import UpdateHub from './pages/spoc/UpdateHub';
+import ChangePassword from './pages/changePassword/ChangePassword';
+import PostEvent from './pages/postevent/PostEvent';
+import EditEventPage from './pages/editEventPage/EditEventPage';
+import About from './components/About';
+import Features from './components/Features'
+import Contact from './components/Contact'
 
 const AppRouter = () => {
     return (
@@ -22,9 +28,14 @@ const AppRouter = () => {
             <Route path='/spoc-dashboard' element={<Spocdashboard />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path='/reset-password' element={<ResetPassword />} />
-            <Route path='/addcoordinator' element={<AddCoordinator/>} />
+            <Route path='/addcoordinator' element={<AddCoordinator />} />
             <Route path="/update-hub/:hubId" element={<UpdateHub />} />
-
+            <Route path='/changepassword' element={<ChangePassword />} />
+            <Route path='/post-event' element={<PostEvent />} />
+            <Route path="/edit-event/:eventId" element={<EditEventPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/contact" element={<Contact />} />
         </Routes>
     );
 };
