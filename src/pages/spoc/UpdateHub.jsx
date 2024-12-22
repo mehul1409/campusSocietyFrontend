@@ -8,8 +8,9 @@ const UpdateHub = () => {
 
   const [hubDetails, setHubDetails] = useState({
     hubName: hub.hubName,
-    collegeId: hub.collegeId._id,
+    collegeId: hub.collegeId._id, 
     coordinatorId: hub.coordinatorId._id,
+    coordinatorName: hub.coordinatorId.name, 
     events: hub.events.map((event) => event._id),
   });
 
@@ -17,17 +18,19 @@ const UpdateHub = () => {
     const { name, value } = e.target;
     setHubDetails({ ...hubDetails, [name]: value });
   };
-  const token = localStorage.getItem('spocauthorize')
+
+  const token = localStorage.getItem("spocauthorize");
+
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/spoc/${hub._id}/hubupdate`, {
+      const response = await fetch(`http://localhost:8003/api/${hub._id}/hubupdate`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-            'access-token': 'tcZALrHkfh0fSe5WQkCuTtHGJbvn4VI1',
-            'spocauthorize':token,
+          "access-token": "tcZALrHkfh0fSe5WQkCuTtHGJbvn4VI1",
+          spocauthorize: token,
         },
         body: JSON.stringify(hubDetails),
       });
@@ -38,7 +41,7 @@ const UpdateHub = () => {
       }
 
       alert("Hub updated successfully!");
-      navigate("/spoc-dashboard"); // Redirect to the SPOC page
+      navigate("/spoc-dashboard");
     } catch (err) {
       alert(err.message || "An error occurred while updating the hub.");
     }
@@ -59,22 +62,21 @@ const UpdateHub = () => {
         </label>
         <br />
         <label>
-          College ID:
+          College Name:
           <input
             type="text"
-            name="collegeId"
-            value={hubDetails.collegeId}
-            onChange={handleChange}
+            value={hub.collegeId.collegeName} 
+            readOnly
           />
         </label>
         <br />
         <label>
-          Coordinator ID:
+          Coordinator Name:
           <input
             type="text"
-            name="coordinatorId"
-            value={hubDetails.coordinatorId}
-            onChange={handleChange}
+            name="coordinatorName" 
+            value={hubDetails.coordinatorName} 
+            onChange={handleChange} 
           />
         </label>
         <br />
