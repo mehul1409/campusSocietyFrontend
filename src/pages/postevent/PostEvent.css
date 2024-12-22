@@ -1,0 +1,104 @@
+/* Container styling */
+.post-event-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Heading styling */
+  .post-event-heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Error and success message styling */
+  .error-message {
+    color: red;
+    font-size: 14px;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .success-message {
+    color: green;
+    font-size: 14px;
+    background-color: #e6ffe6;
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  /* Form styling */
+  .post-event-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Label styling */
+  .post-event-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Input and textarea styling */
+  .post-event-input,
+  .post-event-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .post-event-input:focus,
+  .post-event-textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Button styling */
+  .post-event-button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .post-event-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Responsive design for mobile */
+  @media (max-width: 600px) {
+    .post-event-container {
+      padding: 15px;
+    }
+  
+    .post-event-button {
+      width: 100%;
+    }
+  
+    .post-event-input,
+    .post-event-textarea {
+      font-size: 14px;
+    }
+  }
+  

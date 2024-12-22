@@ -22,7 +22,7 @@ const UpdateHub = () => {
   e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/spoc/${hub._id}/hubupdate`, {
+      const response = await fetch(`http://localhost:8003/spoc/${hub._id}/hubupdate`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

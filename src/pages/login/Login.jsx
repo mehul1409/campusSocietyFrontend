@@ -54,9 +54,13 @@ const Login = () => {
       }
 
       console.log(data);
-      setTokenAndRole(formData.role, data.token, data.role);
 
+      const Details  = data;
+      const userDetails = JSON.stringify(Details)
+      
+      setTokenAndRole(formData.role, data.token, data.role, userDetails);
       navigateToRolePage(formData.role);
+      
     } catch (error) {
       setError(error.message);
     } finally {
@@ -64,17 +68,19 @@ const Login = () => {
     }
   };
 
-  const setTokenAndRole = (role, token, userrole) => {
+  const setTokenAndRole = (role, token, userrole, details) => {
     const storageKey = `${role}authorize`;
+    const userdetails = `${role}details`;
+    localStorage.setItem(userdetails, details);
     localStorage.setItem(storageKey, token);
     localStorage.setItem('role', userrole);
   };
 
   const getLoginEndpoint = (role) => {
     const endpoints = {
-      spoc: 'http://localhost:3000/spoc/login',
-      coordinator: 'http://localhost:3000/coordinator/login',
-      student: 'http://localhost:3000/student/login',
+      spoc: 'http://localhost:8003/spoc/login',
+      coordinator: 'http://localhost:8003/coordinator/login',
+      student: 'http://localhost:8003/student/login',
     };
     return endpoints[role] || endpoints.student;
   };

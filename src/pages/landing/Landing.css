@@ -1,41 +1,117 @@
-  .landing-page {
-    display: flex;
-    flex-direction: column;
-  }
+.hero-section {
+  background: linear-gradient(135deg, #f0f5f7, #9ec4ed);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-  .main-content {
-    flex: 1;
-    padding: 2rem;
-    background-color: #f9f9f9;
-  }
+.hero-content h1 {
+  margin-top:25%;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
 
-  .about-section,
-  .shoutout-section {
-    margin-bottom: 2rem;
-    text-align: center;
-  }
+.hero-content .paradiv{
+  width:90%;
+  margin:auto;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
 
-  h2 {
-    color: #4CAF50;
-  }
+.cta-button, .learn-more-button {
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-bottom: 10%;
+}
 
-  .getStartedButton {
-    border: 0;
-    outline: none;
-    background: transparent;
-    font-size: 1.1rem;
-    background-color: rgb(43, 47, 47);
-    padding: 2% 4%;
-    border-radius: 10px;
-    margin-top: 4%;
-    transition: transform 0.3s ease-in-out;
-  }
+.cta-button a, .learn-more-button a {
+  color: white;
+  text-decoration: none;
+}
 
-  .getStartedButton:hover {
-    transform: scale(1.2);
-  }
+.cta-button:hover, .learn-more-button:hover {
+  background-color: #0056b3;
+}
 
-  .getStartedButton a {
-    color: white;
-    text-decoration: none;
-  }
+.about-section h2 {
+  font-size: 1.5rem;
+  margin: 30px;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #494848;
+  width:95%;
+  text-align: center;
+  margin: auto;
+}
+
+.aboutSectionButton{
+  display: flex;
+  justify-content: center;
+  margin-top:5%;
+  margin-bottom: 5%;
+}
+
+.aboutSectionButton button{
+  margin-bottom: 0;
+}
+
+.features-section {
+  background-color: #eef4fd;
+  padding:3% 1%;
+  margin-top:5%;
+}
+
+.features-section h2 {
+  font-size: 1.5rem;
+  /* padding-top: 40px; */
+  color:#333;
+}
+
+.feature {
+  background-color: white;
+  padding: 15px;
+  margin:15px 10px 0px 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+}
+
+.feature h3 {
+  font-size: 1.3rem;
+  color: #32669e;
+}
+
+.feature p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.shoutout-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.shoutout-section p {
+  font-size: 1.1rem;
+  color: #555;
+  margin:auto;
+  width:90%;
+  text-align: center;
+}
+

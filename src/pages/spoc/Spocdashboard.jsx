@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Spocdashboard.css"; // Import the CSS file
+import "./Spocdashboard.css";
 
 const Spocdashboard = () => {
   const [hubs, setHubs] = useState([]);
@@ -8,12 +8,16 @@ const Spocdashboard = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch all hubs from the API
   const token = localStorage.getItem("spocauthorize");
+  useEffect(() => {
+    if (!token) {
+      window.location.href = '/';
+    }
+  },[])
   useEffect(() => {
     const fetchHubs = async () => {
       try {
-        const response = await fetch("http://localhost:3000/spoc/getAllHubs", {
+        const response = await fetch("http://localhost:8003/api/getAllHubs", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -39,10 +43,9 @@ const Spocdashboard = () => {
     fetchHubs();
   }, []);
 
-  // Handle delete hub
   const handleDelete = async (hubId) => {
     try {
-      const response = await fetch(`http://localhost:3000/spoc/${hubId}/hubdelete`, {
+      const response = await fetch(`http://localhost:8003/api/${hubId}/hubdelete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

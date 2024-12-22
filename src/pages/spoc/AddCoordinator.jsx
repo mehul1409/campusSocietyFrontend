@@ -25,7 +25,7 @@ const AddCoordinator = () => {
     setResponseMessage(null);
     
     try {
-      const response = await fetch("http://localhost:3000/spoc/createHub", {
+      const response = await fetch("http://localhost:8003/spoc/createHub", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
