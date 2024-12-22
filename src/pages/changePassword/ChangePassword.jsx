@@ -33,6 +33,16 @@ const ChangePassword = () => {
         }
     }
 
+    const authorizationHeader = (role) => {
+        if (role === 'coordinator') {
+            return { coordinatorauthorize: localStorage.getItem('coordinatorauthorize') };
+        } else if (role === 'student') {
+            return { studentauthorize: localStorage.getItem('studentauthorize') };
+        } else if (role === 'spoc') {
+            return { spocauthorize: localStorage.getItem('spocauthorize') };
+        }
+    };
+
     useEffect(() => {
         if (location.state?.email) {
             setEmail(location.state.email);
@@ -61,7 +71,7 @@ const ChangePassword = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'coordinatorauthorize': localStorage.getItem('coordinatorauthorize'),
+                    ...authorizationHeader(role),
                 },
                 body: JSON.stringify({ email, currentPassword, newPassword }),
             });

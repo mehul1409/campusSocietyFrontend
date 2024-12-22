@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Card.css";
 
-const Card = ({ name, hubName, email, college, imageSrc }) => {
+const Card = ({ name, hubName, spocName, email, college, imageSrc }) => {
   const navigate = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -16,17 +16,17 @@ const Card = ({ name, hubName, email, college, imageSrc }) => {
     localStorage.removeItem(details);
     localStorage.removeItem('role');
     localStorage.removeItem(authorize);
-  }
+  };
 
   const endpointLogout = (role) => {
     if (role === 'coordinator') {
       return 'http://localhost:8003/coordinator/logout';
     } else if (role === 'student') {
-      return 'http://localhost:8002/student/logout';
+      return 'http://localhost:8003/student/logout';
     } else if (role === 'spoc') {
-      return 'http://localhost:8001/spoc/logout';
+      return 'http://localhost:8003/spoc/logout';
     }
-  }
+  };
 
   const handleLogout = async () => {
     try {
@@ -46,15 +46,19 @@ const Card = ({ name, hubName, email, college, imageSrc }) => {
       removeCredentials(role);
 
       window.location.href = '/';
-
     } catch (error) {
       console.error("Logout error:", error);
       alert("Logout failed, please try again later.");
     }
   };
+
   const handleChangePasswordClick = () => {
     navigate("/changepassword", { state: { email } });
   };
+
+  const role = localStorage.getItem('role');
+  const displayRoleField = role === 'coordinator' ? hubName : spocName;
+  const displayRoleLabel = role === 'coordinator' ? 'Hub' : 'Spoc';
 
   return (
     <div className="coordinator-card">
@@ -62,7 +66,7 @@ const Card = ({ name, hubName, email, college, imageSrc }) => {
         <div className="card-details">
           <h3>{name}</h3>
           <p><strong>College:</strong> {college}</p>
-          <p><strong>Hub:</strong> {hubName}</p>
+          <p><strong>{displayRoleLabel}:</strong> {displayRoleField}</p>
         </div>
         <div className="card-image" onClick={togglePopup}>
           <img src={imageSrc} alt="Coordinator" />

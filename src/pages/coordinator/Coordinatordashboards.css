@@ -1,5 +1,4 @@
 .dashboard-container {
-    padding: 10px;
     color:#333;
     background-color:white;
   }
@@ -30,6 +29,10 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .post-event-button-coordinator{
+    width:95% !important ;
   }
   
   .post-event-button:hover {
