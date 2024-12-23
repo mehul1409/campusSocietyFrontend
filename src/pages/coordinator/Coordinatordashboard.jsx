@@ -24,7 +24,7 @@ const CoordinatorDashboard = () => {
     const fetchEvents = async () => {
       if (coordinatorDetails) {
         try {
-          const response = await fetch('http://localhost:8003/coordinator/eventsByCoordinator', {
+          const response = await fetch('https://campussociety.onrender.com/coordinator/eventsByCoordinator', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const CoordinatorDashboard = () => {
 
   const handleDelete = async (eventId) => {
     try {
-      const response = await fetch('http://localhost:8003/coordinator/deleteEvent', {
+      const response = await fetch('https://campussociety.onrender.com/coordinator/deleteEvent', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

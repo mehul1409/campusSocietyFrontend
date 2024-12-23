@@ -13,7 +13,7 @@ const EventCardPage = () => {
 
   const fetchEventDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:8003/api/getEventById/${eventId}`, {
+      const response = await fetch(`https://campussociety.onrender.com/api/getEventById/${eventId}`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",

@@ -20,11 +20,11 @@ const Card = ({ name, hubName, spocName, email, college, imageSrc, collegeLocati
 
   const endpointLogout = (role) => {
     if (role === 'coordinator') {
-      return 'http://localhost:8003/coordinator/logout';
+      return 'https://campussociety.onrender.com/coordinator/logout';
     } else if (role === 'student') {
-      return 'http://localhost:8003/student/logout';
+      return 'https://campussociety.onrender.com/student/logout';
     } else if (role === 'spoc') {
-      return 'http://localhost:8003/spoc/logout';
+      return 'https://campussociety.onrender.com/spoc/logout';
     }
   };
 

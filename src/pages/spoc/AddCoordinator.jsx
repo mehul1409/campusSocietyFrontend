@@ -35,7 +35,7 @@ const AddCoordinator = () => {
 
     try {
       console.log("Token being sent:", token); 
-      const response = await fetch("http://localhost:8003/spoc/createHub", {
+      const response = await fetch("https://campussociety.onrender.com/spoc/createHub", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

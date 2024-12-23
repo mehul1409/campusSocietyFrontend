@@ -19,11 +19,11 @@ const ForgotPassword = () => {
 
         let endpoint = '';
         if (role === 'student') {
-            endpoint = 'http://localhost:8003/student/forgotPassword';
+            endpoint = 'https://campussociety.onrender.com/student/forgotPassword';
         } else if (role === 'spoc') {
-            endpoint = 'http://localhost:8003/spoc/forgotPassword';
+            endpoint = 'https://campussociety.onrender.com/spoc/forgotPassword';
         } else if (role === 'coordinator') {
-            endpoint = 'http://localhost:8003/coordinator/forgotPassword';
+            endpoint = 'https://campussociety.onrender.com/coordinator/forgotPassword';
         }
 
         console.log(`Sending password reset request to ${endpoint} for email: ${email}`);

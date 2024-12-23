@@ -19,7 +19,7 @@ const Register = () => {
   useEffect(() => {
     const fetchColleges = async () => {
       try {
-        const response = await axios.get('http://localhost:8003/api/getAllColleges', {
+        const response = await axios.get('https://campussociety.onrender.com/api/getAllColleges', {
           headers: {
             'Content-Type': 'application/json',
             'access-token': 'tcZALrHkfh0fSe5WQkCuTtHGJbvn4VI1',
@@ -60,7 +60,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8003/student/register', formData);
+      const response = await axios.post('https://campussociety.onrender.com/student/register', formData);
 
       if (response.status === 201) {
         setMessage('Registration successful! Redirecting to login...');

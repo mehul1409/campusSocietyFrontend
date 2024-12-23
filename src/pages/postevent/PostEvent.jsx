@@ -36,7 +36,7 @@ const PostEvent = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:8003/coordinator/PostEvent', {
+      const response = await fetch('https://campussociety.onrender.com/coordinator/PostEvent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -26,7 +26,7 @@ const Spocdashboard = () => {
   useEffect(() => {
     const fetchHubs = async () => {
       try {
-        const response = await fetch("http://localhost:8003/api/getAllHubs", {
+        const response = await fetch("https://campussociety.onrender.com/api/getAllHubs", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const Spocdashboard = () => {
 
   const handleDelete = async (hubId) => {
     try {
-      const response = await fetch(`http://localhost:8003/api/${hubId}/hubdelete`, {
+      const response = await fetch(`https://campussociety.onrender.com/api/${hubId}/hubdelete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

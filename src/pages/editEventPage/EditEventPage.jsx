@@ -16,7 +16,7 @@ const EditEventPage = () => {
   useEffect(() => {
     const fetchEventDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:8003/coordinator/getEventById/${eventId}`, {
+        const response = await fetch(`https://campussociety.onrender.com/coordinator/getEventById/${eventId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const EditEventPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8003/coordinator/editEvent`, {
+      const response = await fetch(`https://campussociety.onrender.com/coordinator/editEvent`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

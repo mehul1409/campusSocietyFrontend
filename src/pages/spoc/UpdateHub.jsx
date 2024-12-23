@@ -36,7 +36,7 @@ const UpdateHub = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8003/api/${hub._id}/hubupdate`, {
+      const response = await fetch(`https://campussociety.onrender.com/api/${hub._id}/hubupdate`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

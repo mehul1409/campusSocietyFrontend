@@ -16,11 +16,11 @@ const ResetPassword = () => {
 
     let endpoint = '';
     if (role === 'student') {
-        endpoint = 'http://localhost:8003/student/resetPassword';
+        endpoint = 'https://campussociety.onrender.com/student/resetPassword';
     } else if (role === 'spoc') {
-        endpoint = 'http://localhost:8003/spoc/resetPassword';
+        endpoint = 'https://campussociety.onrender.com/spoc/resetPassword';
     } else if (role === 'coordinator') {
-        endpoint = 'http://localhost:8003/coordinator/resetPassword';
+        endpoint = 'https://campussociety.onrender.com/coordinator/resetPassword';
     }
 
     const handleSubmit = async (e) => {

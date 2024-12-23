@@ -25,11 +25,11 @@ const ChangePassword = () => {
 
     const endpoint = (role) =>{
         if(role === 'coordinator'){
-            return 'http://localhost:8003/coordinator/changePassword';
+            return 'https://campussociety.onrender.com/coordinator/changePassword';
         }else if(role === 'student'){
-            return 'http://localhost:8003/student/changePassword';
+            return 'https://campussociety.onrender.com/student/changePassword';
         }else if(role === 'spoc'){
-            return 'http://localhost:8003/spoc/changePassword';
+            return 'https://campussociety.onrender.com/spoc/changePassword';
         }
     }
 

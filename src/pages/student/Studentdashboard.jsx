@@ -131,7 +131,7 @@ const Studentdashboard = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:8003/spoc/getSpocById/${spocId}`, {
+      const response = await fetch(`https://campussociety.onrender.com/spoc/getSpocById/${spocId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ const Studentdashboard = () => {
 
   const fetchAllHubs = async () => {
     try {
-      const response = await fetch('http://localhost:8003/api/getAllHubs', {
+      const response = await fetch('https://campussociety.onrender.com/api/getAllHubs', {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",

@@ -80,7 +80,7 @@ const EventsPage = () => {
 
   const fetchHubDetails = async () => {
     try {
-      const response = await fetch('http://localhost:8003/api/getAllHubs', {
+      const response = await fetch('https://campussociety.onrender.com/api/getAllHubs', {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const EventsPage = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch(`http://localhost:8003/api/getAllEvents`, {
+      const response = await fetch(`https://campussociety.onrender.com/api/getAllEvents`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
