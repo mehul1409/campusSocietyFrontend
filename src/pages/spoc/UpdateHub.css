@@ -1,0 +1,73 @@
+.update-hub-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .response-message {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .success-message {
+    color: green;
+    border: 1px solid green;
+    background-color: #e6ffe6;
+  }
+  
+  .error-message {
+    color: red;
+    border: 1px solid red;
+    background-color: #ffe6e6;
+  }
+  
+  .update-hub-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  

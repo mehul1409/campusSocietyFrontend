@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Card.css";
 
-const Card = ({ name, hubName, spocName, email, college, imageSrc }) => {
+const Card = ({ name, hubName, spocName, email, college, imageSrc, collegeLocation }) => {
   const navigate = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -57,23 +57,37 @@ const Card = ({ name, hubName, spocName, email, college, imageSrc }) => {
   };
 
   const role = localStorage.getItem('role');
-  const displayRoleField = role === 'coordinator' ? hubName : spocName;
-  const displayRoleLabel = role === 'coordinator' ? 'Hub' : 'Spoc';
+  var displayRoleField;
+  var displayRoleLabel;
+
+  if (role === 'coordinator') {
+    displayRoleField = hubName;
+    displayRoleLabel = 'HUB';
+  } else if (role === 'student') {
+    displayRoleField = spocName;
+    displayRoleLabel = 'SPOC';
+  }
 
   return (
     <div className="coordinator-card">
       <div className="details">
         <div className="card-details">
-          <h3>{name}</h3>
+          <h3 className="username">{name}</h3>
+          {
+            role !== 'spoc' && (
+              <p><strong>{displayRoleLabel}:</strong> {displayRoleField}</p>
+            )
+          }
+
           <p><strong>College:</strong> {college}</p>
-          <p><strong>{displayRoleLabel}:</strong> {displayRoleField}</p>
+          <p><strong>COLLEGE LOCATION:</strong> {collegeLocation}</p>
         </div>
         <div className="card-image" onClick={togglePopup}>
           <img src={imageSrc} alt="Coordinator" />
         </div>
       </div>
       <div className="emaildetail">
-        <p><strong>Email:</strong> {email}</p>
+        <p><strong>EMAIL:</strong> {email}</p>
       </div>
 
       {isPopupOpen && (
