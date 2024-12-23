@@ -103,6 +103,7 @@ const CoordinatorDashboard = () => {
         email={coordinatorDetails.coordinator.email}
         college={coordinatorDetails.coordinator.collegeId.collegeName}
         imageSrc={imageSrc}
+        collegeLocation={coordinatorDetails.coordinator.collegeId.location}
       />
       <button className="post-event-button post-event-button-coordinator" onClick={handlePostEvent}>Post New Event</button>
       <hr />

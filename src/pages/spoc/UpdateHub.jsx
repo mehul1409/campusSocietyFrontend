@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import './UpdateHub.css';
 
 const UpdateHub = () => {
   const location = useLocation();
@@ -8,11 +9,21 @@ const UpdateHub = () => {
 
   const [hubDetails, setHubDetails] = useState({
     hubName: hub.hubName,
-    collegeId: hub.collegeId._id, 
+    collegeId: hub.collegeId._id,
     coordinatorId: hub.coordinatorId._id,
-    coordinatorName: hub.coordinatorId.name, 
-    events: hub.events.map((event) => event._id),
+    coordinatorName: hub.coordinatorId.name,
   });
+
+  const [responseMessage, setResponseMessage] = useState(null);
+
+
+  useEffect(() => {
+    const storedDetails = localStorage.getItem('spocdetails');
+    if (!storedDetails) {
+      window.location.href = '/';
+    }
+  }, []);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,60 +51,69 @@ const UpdateHub = () => {
         throw new Error(errorData.message || "Failed to update hub.");
       }
 
-      alert("Hub updated successfully!");
-      navigate("/spoc-dashboard");
+      setResponseMessage({
+        type: "success",
+        message: "Hub updated successfully!",
+      });
+
+      setTimeout(() => navigate("/spoc-dashboard"), 2000);
     } catch (err) {
-      alert(err.message || "An error occurred while updating the hub.");
+      setResponseMessage({
+        type: "error",
+        message: err.message || "An error occurred while updating the hub.",
+      });
     }
   };
 
   return (
     <div>
-      <h1>Update Hub</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Hub Name:
+      <h1 className="update-hub-title">Update Hub</h1>
+      {responseMessage && (
+        <div
+          className={`response-message ${responseMessage.type === "success" ? "success-message" : "error-message"
+            }`}
+        >
+          {responseMessage.message}
+        </div>
+      )}
+      <form onSubmit={handleSubmit} className="update-hub-form">
+        <div className="form-group">
+          <label htmlFor="hubName">Hub Name:</label>
           <input
             type="text"
+            id="hubName"
             name="hubName"
             value={hubDetails.hubName}
             onChange={handleChange}
+            className="form-input"
           />
-        </label>
-        <br />
-        <label>
-          College Name:
+        </div>
+        <div className="form-group">
+          <label htmlFor="coordinatorName">Coordinator Name:</label>
           <input
             type="text"
-            value={hub.collegeId.collegeName} 
-            readOnly
+            id="coordinatorName"
+            name="coordinatorName"
+            value={hubDetails.coordinatorName}
+            onChange={handleChange}
+            className="form-input"
           />
-        </label>
-        <br />
-        <label>
-          Coordinator Name:
-          <input
-            type="text"
-            name="coordinatorName" 
-            value={hubDetails.coordinatorName} 
-            onChange={handleChange} 
-          />
-        </label>
-        <br />
-        <label>
-          Events (comma-separated IDs):
-          <input
-            type="text"
-            name="events"
-            value={hubDetails.events.join(",")}
-            onChange={(e) =>
-              setHubDetails({ ...hubDetails, events: e.target.value.split(",") })
-            }
-          />
-        </label>
-        <br />
-        <button type="submit">Update Hub</button>
+        </div>
+        <button type="submit" className="submit-button">
+          Update Hub
+        </button>
       </form>
+
+      <hr />
+      <div className="mainLogoImage">
+        <div className="aboveimage">
+          "Join the Campus Society — Connect, Collaborate, and Grow Together!"
+        </div>
+        <img src="/mainLogo.png" alt="" />
+        <div className="belowimage">
+          "Proudly developed for the Campus Community with passion and dedication."
+        </div>
+      </div>
     </div>
   );
 };

@@ -204,9 +204,9 @@ const Studentdashboard = () => {
         name={studentDetails.student.name}
         email={studentDetails.student.email}
         college={studentDetails.student.collegeId.collegeName}
-        hubName={spocDetails?.hubName || 'N/A'}
         imageSrc={imageSrc}
         spocName={spocDetails?.name || 'N/A'}
+        collegeLocation={studentDetails.student.collegeId.location}
       />
 
       <h2>All Hubs</h2>

@@ -1,19 +1,27 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const AddCoordinator = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    collegeId: "",
     hubName: "",
     coordinatorName: "",
     coordinatorEmail: "",
   });
   const token = localStorage.getItem('spocauthorize')
-  const spocDetailsString = localStorage.getItem("spocdetails");
-  const spocDetails = JSON.parse(spocDetailsString);
-  const spocCollegeId = spocDetails.spoc.collegeId; 
+
+  const spocdetails = JSON.parse(localStorage.getItem('spocdetails'));
+  const collegeId = spocdetails?.spoc?.collegeId?._id;  
 
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState(null);
+
+  useEffect(() => {
+    const storedDetails = localStorage.getItem('spocdetails');
+    if (!storedDetails) {
+      window.location.href = '/';
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +32,7 @@ const AddCoordinator = () => {
     e.preventDefault();
     setLoading(true);
     setResponseMessage(null);
-  
+
     try {
       console.log("Token being sent:", token); 
       const response = await fetch("http://localhost:8003/spoc/createHub", {
@@ -35,7 +43,7 @@ const AddCoordinator = () => {
           "spocauthorize": token,
         },
         body: JSON.stringify({
-          collegeId: spocCollegeId,
+          collegeId : collegeId,
           hubName: formData.hubName,
           coordinatorDetails: {
             name: formData.coordinatorName,
@@ -43,29 +51,26 @@ const AddCoordinator = () => {
           },
         }),
       });
-  
-      if (response.status === 401) {
-        throw new Error("Unauthorized. Please log in again.");
-      }
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "An error occurred");
       }
-  
-      const data = await response.json();
+
       setResponseMessage({
         type: "success",
-        message: `Hub created successfully! Hub ID: ${data.hubId}. Login credentials have been sent to the coordinator's email.`,
+        message: `Hub created successfully! Login credentials have been sent to the coordinator's email.`,
       });
-  
-      // Clear the form
+
       setFormData({
-        collegeId: "",
         hubName: "",
         coordinatorName: "",
         coordinatorEmail: "",
       });
+
+      setTimeout(()=>{
+        navigate('/spoc-dashboard');
+      },2000)
     } catch (error) {
       setResponseMessage({
         type: "error",
@@ -80,6 +85,21 @@ const AddCoordinator = () => {
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
       <h2>Create a New Hub</h2>
+      {responseMessage && (
+        <div
+          style={{
+            marginTop: "20px",
+            padding: "10px",
+            color: responseMessage.type === "success" ? "green" : "red",
+            border:
+              responseMessage.type === "success"
+                ? "1px solid green"
+                : "1px solid red",
+          }}
+        >
+          {responseMessage.message}
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
 
         <div style={{ marginBottom: "15px" }}>
@@ -121,7 +141,6 @@ const AddCoordinator = () => {
           />
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           disabled={loading}
@@ -136,23 +155,16 @@ const AddCoordinator = () => {
           {loading ? "Creating Hub..." : "Create Hub"}
         </button>
       </form>
-
-      {/* Response Message */}
-      {responseMessage && (
-        <div
-          style={{
-            marginTop: "20px",
-            padding: "10px",
-            color: responseMessage.type === "success" ? "green" : "red",
-            border:
-              responseMessage.type === "success"
-                ? "1px solid green"
-                : "1px solid red",
-          }}
-        >
-          {responseMessage.message}
+      <hr />
+      <div className="mainLogoImage">
+        <div className="aboveimage">
+          "Join the Campus Society — Connect, Collaborate, and Grow Together!"
         </div>
-      )}
+        <img src="/mainLogo.png" alt="" />
+        <div className="belowimage">
+          "Proudly developed for the Campus Community with passion and dedication."
+        </div>
+      </div>
     </div>
   );
 };

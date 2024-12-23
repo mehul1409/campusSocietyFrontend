@@ -12,6 +12,10 @@
   .coordinator-card .details{
     display: flex;
   }
+
+  .card-details .username{
+    text-transform: uppercase;
+  }
   
   .card-details h3 {
     margin: 0 0 8px;
