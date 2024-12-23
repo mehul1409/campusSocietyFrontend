@@ -42,6 +42,7 @@ const CoordinatorDashboard = () => {
           setEvents(data);
         } catch (error) {
           setErrorMessage('Error fetching events. Please try again later.');
+          setTimeout(()=>{setErrorMessage('')},2000);
           console.error('Error fetching events:', error);
         }
       }

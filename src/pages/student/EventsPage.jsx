@@ -119,6 +119,8 @@ const EventsPage = () => {
         return;
       }
 
+      setTimeout(()=>{setErrorMessage('')},2000);
+
       const eventsData = await response.json();
       setEvents(eventsData);
     } catch (error) {
@@ -137,13 +139,13 @@ const EventsPage = () => {
   return (
     <div className="events-page">
       <div className="hub-header">
-        <div className="hub-image">
+        {/* <div className="hub-image">
           <img src={imageSrc} alt="Hub" />
-        </div>
+        </div> */}
         <div className="hub-details">
           <h1>{hubDetails?.hubName || 'Hub Name'}</h1>
           <p><strong>Coordinator Name:</strong> {hubDetails?.coordinatorId.name || 'N/A'}</p>
-          <p><strong>Coordinator Email:</strong> {hubDetails?.coordinatorId.email || 'N/A'}</p>
+          {/* <p><strong>Coordinator Email:</strong> {hubDetails?.coordinatorId.email || 'N/A'}</p> */}
         </div>
       </div>
       <h2>Events</h2>

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import './EventCardPage.css';
 
 const EventCardPage = () => {
-  const { eventId } = useParams(); // Event ID from route
+  const { eventId } = useParams();
   const [eventDetails, setEventDetails] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -24,6 +24,7 @@ const EventCardPage = () => {
         setErrorMessage('Failed to fetch event details.');
         return;
       }
+      setTimeout(()=>{setErrorMessage('')},2000);
 
       const data = await response.json();
       console.log(data)

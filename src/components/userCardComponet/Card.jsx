@@ -86,9 +86,9 @@ const Card = ({ name, hubName, spocName, email, college, imageSrc, collegeLocati
           <img src={imageSrc} alt="Coordinator" />
         </div>
       </div>
-      <div className="emaildetail">
+      {/* <div className="emaildetail">
         <p><strong>EMAIL:</strong> {email}</p>
-      </div>
+      </div> */}
 
       {isPopupOpen && (
         <div className="popup-overlay" onClick={togglePopup}>
