@@ -22,10 +22,9 @@ const EventCardPage = () => {
 
       if (!response.ok) {
         setErrorMessage('Failed to fetch event details.');
+        setTimeout(() => { setErrorMessage('') }, 2000);
         return;
       }
-      setTimeout(()=>{setErrorMessage('')},2000);
-
       const data = await response.json();
       console.log(data)
       setEventDetails(data);

@@ -116,11 +116,9 @@ const EventsPage = () => {
 
       if (!response.ok) {
         setErrorMessage('Failed to fetch events.');
+        setTimeout(() => { setErrorMessage('') }, 2000);
         return;
       }
-
-      setTimeout(()=>{setErrorMessage('')},2000);
-
       const eventsData = await response.json();
       setEvents(eventsData);
     } catch (error) {
