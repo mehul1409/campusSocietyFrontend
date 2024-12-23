@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 const AddCoordinator = () => {
   const [formData, setFormData] = useState({
@@ -9,11 +8,13 @@ const AddCoordinator = () => {
     coordinatorEmail: "",
   });
   const token = localStorage.getItem('spocauthorize')
+  const spocDetailsString = localStorage.getItem("spocdetails");
+  const spocDetails = JSON.parse(spocDetailsString);
+  const spocCollegeId = spocDetails.spoc.collegeId; 
 
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState(null);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -23,8 +24,9 @@ const AddCoordinator = () => {
     e.preventDefault();
     setLoading(true);
     setResponseMessage(null);
-    
+  
     try {
+      console.log("Token being sent:", token); 
       const response = await fetch("http://localhost:8003/spoc/createHub", {
         method: "POST",
         headers: {
@@ -33,7 +35,7 @@ const AddCoordinator = () => {
           "spocauthorize": token,
         },
         body: JSON.stringify({
-          collegeId: formData.collegeId,
+          collegeId: spocCollegeId,
           hubName: formData.hubName,
           coordinatorDetails: {
             name: formData.coordinatorName,
@@ -41,6 +43,10 @@ const AddCoordinator = () => {
           },
         }),
       });
+  
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please log in again.");
+      }
   
       if (!response.ok) {
         const errorData = await response.json();
@@ -69,26 +75,13 @@ const AddCoordinator = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
       <h2>Create a New Hub</h2>
       <form onSubmit={handleSubmit}>
-        {/* College ID */}
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="collegeId">College ID:</label>
-          <input
-            type="text"
-            id="collegeId"
-            name="collegeId"
-            value={formData.collegeId}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
 
-        {/* Hub Name */}
         <div style={{ marginBottom: "15px" }}>
           <label htmlFor="hubName">Hub Name:</label>
           <input
@@ -102,7 +95,6 @@ const AddCoordinator = () => {
           />
         </div>
 
-        {/* Coordinator Name */}
         <div style={{ marginBottom: "15px" }}>
           <label htmlFor="coordinatorName">Coordinator Name:</label>
           <input
@@ -116,7 +108,6 @@ const AddCoordinator = () => {
           />
         </div>
 
-        {/* Coordinator Email */}
         <div style={{ marginBottom: "15px" }}>
           <label htmlFor="coordinatorEmail">Coordinator Email:</label>
           <input

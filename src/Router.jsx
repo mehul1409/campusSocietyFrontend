@@ -16,6 +16,8 @@ import EditEventPage from './pages/editEventPage/EditEventPage';
 import About from './components/About';
 import Features from './components/Features'
 import Contact from './components/Contact'
+import EventsPage from './pages/student/EventsPage';
+import EventCardPage from './pages/student/EventCardPage';
 
 const AppRouter = () => {
     return (
@@ -36,6 +38,8 @@ const AppRouter = () => {
             <Route path="/about" element={<About />} />
             <Route path="/features" element={<Features />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/hub/:coordinatorId/events" element={<EventsPage />} />
+            <Route path="/event/:eventId" element={<EventCardPage />} />
         </Routes>
     );
 };

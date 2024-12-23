@@ -20,7 +20,7 @@ const UpdateHub = () => {
   };
 
   const token = localStorage.getItem("spocauthorize");
-
+  console.log(hubDetails)
   const handleSubmit = async (e) => {
     e.preventDefault();
 

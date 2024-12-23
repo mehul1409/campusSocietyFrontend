@@ -1,0 +1,36 @@
+.student-dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .hub-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .hub-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 250px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .hub-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hub-card h3 {
+    margin: 0 0 10px;
+    color: #333;
+  }
+  
+  .hub-card p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
