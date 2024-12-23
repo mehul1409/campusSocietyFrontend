@@ -34,6 +34,7 @@ const AddCoordinator = () => {
     setResponseMessage(null);
 
     try {
+      console.log("Token being sent:", token); 
       const response = await fetch("http://localhost:8003/spoc/createHub", {
         method: "POST",
         headers: {
@@ -79,6 +80,7 @@ const AddCoordinator = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
