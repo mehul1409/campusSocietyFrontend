@@ -1,77 +1,15 @@
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-
-// const EventsPage = () => {
-//   const { coordinatorId } = useParams();
-//   const [events, setEvents] = useState([]);
-//   const [errorMessage, setErrorMessage] = useState('');
-//   const token = localStorage.getItem('studentauthorize')
-
-//   useEffect(() => {
-//     fetchEvents();
-//   }, []);
-
-//   console.log(coordinatorId)
-
-//   const fetchEvents = async () => {
-//     try {
-//       const response = await fetch(`http://localhost:8003/api/getAllEvents`, {
-//         method: 'POST',
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({coordinatorId }),
-//       });
-//       console.log(response)
-
-//       if (!response.ok) {
-//         setErrorMessage('Failed to fetch events.');
-//         return;
-//       }
-
-//       const eventsData = await response.json();
-//       console.log(eventsData)
-//       setEvents(eventsData);
-//     } catch (error) {
-//       console.error('Error fetching events:', error);
-//       setErrorMessage('An error occurred while fetching events.');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Events</h1>
-//       {errorMessage && <div className="error-message">{errorMessage}</div>}
-//       {events.length > 0 ? (
-//         <ul>
-//           {events.map((event) => (
-//             <li key={event._id}>
-//               <h3>{event.eventDetails.title}</h3>
-//               <p>{event.eventDetails.description}</p>
-//               <p>Date: {new Date(event.eventDetails.date).toLocaleDateString()}</p>
-//             </li>
-//           ))}
-//         </ul>
-//       ) : (
-//         <p>No events available.</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default EventsPage;
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import './EventsPage.css';
-import imageSrc from '/mehulBansal.jpeg';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import "./EventsPage.css";
+import imageSrc from "/mehulBansal.jpeg";
 
 const EventsPage = () => {
   const { coordinatorId } = useParams();
   const [hubDetails, setHubDetails] = useState(null);
   const [events, setEvents] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
-  const token = localStorage.getItem('studentauthorize');
-  const navigate = useNavigate(); // For navigation
+  const [errorMessage, setErrorMessage] = useState("");
+  const token = localStorage.getItem("studentauthorize");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchHubDetails();
@@ -80,8 +18,8 @@ const EventsPage = () => {
 
   const fetchHubDetails = async () => {
     try {
-      const response = await fetch('http://localhost:8003/api/getAllHubs', {
-        method: 'GET',
+      const response = await fetch("http://localhost:8003/api/getAllHubs", {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
           "access-token": "tcZALrHkfh0fSe5WQkCuTtHGJbvn4VI1",
@@ -90,24 +28,25 @@ const EventsPage = () => {
       });
 
       if (!response.ok) {
-        setErrorMessage('Failed to fetch hub details.');
+        setErrorMessage("Failed to fetch hub details.");
         return;
       }
 
       const hubData = await response.json();
-      const matchingHub = hubData.find((hub) => hub.coordinatorId._id === coordinatorId);
-      console.log(matchingHub);
+      const matchingHub = hubData.find(
+        (hub) => hub.coordinatorId._id === coordinatorId
+      );
       setHubDetails(matchingHub);
     } catch (error) {
-      console.error('Error fetching hub details:', error);
-      setErrorMessage('An error occurred while fetching hub details.');
+      console.error("Error fetching hub details:", error);
+      setErrorMessage("An error occurred while fetching hub details.");
     }
   };
 
   const fetchEvents = async () => {
     try {
       const response = await fetch(`http://localhost:8003/api/getAllEvents`, {
-        method: 'POST',
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -115,20 +54,20 @@ const EventsPage = () => {
       });
 
       if (!response.ok) {
-        setErrorMessage('Failed to fetch events.');
+        setErrorMessage("Failed to fetch events.");
         return;
       }
 
       const eventsData = await response.json();
       setEvents(eventsData);
     } catch (error) {
-      console.error('Error fetching events:', error);
-      setErrorMessage('An error occurred while fetching events.');
+      console.error("Error fetching events:", error);
+      setErrorMessage("An error occurred while fetching events.");
     }
   };
 
   const truncateText = (text, maxLength) => {
-    if (text.length > maxLength) {
+    if (text?.length > maxLength) {
       return `${text.slice(0, maxLength)}...`;
     }
     return text;
@@ -136,34 +75,47 @@ const EventsPage = () => {
 
   return (
     <div className="events-page">
+      {/* Hub Profile Section */}
       <div className="hub-header">
-        <div className="hub-image">
-          <img src={imageSrc} alt="Hub" />
-        </div>
-        <div className="hub-details">
-          <h1>{hubDetails?.hubName || 'Hub Name'}</h1>
-          <p><strong>Coordinator Name:</strong> {hubDetails?.coordinatorId.name || 'N/A'}</p>
-          <p><strong>Coordinator Email:</strong> {hubDetails?.coordinatorId.email || 'N/A'}</p>
+        <div className="hub-profile">
+          <img src={imageSrc} alt="Hub" className="hub-profile-img" />
+          <div className="hub-info">
+            <h1 className="hub-name">{hubDetails?.hubName || "Hub Name"}</h1>
+            <p className="hub-coordinator">
+              <strong>Coordinator:</strong> {hubDetails?.coordinatorId.name || "N/A"}
+            </p>
+            <p className="hub-email">
+              <strong>Email:</strong> {hubDetails?.coordinatorId.email || "N/A"}
+            </p>
+          </div>
         </div>
       </div>
-      <h2>Events</h2>
+
+      {/* Events Section */}
+      <h2 className="events-title">Events</h2>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       {events.length > 0 ? (
-        <ul className="events-list">
+        <div className="events-grid">
           {events.map((event) => (
-            <li
+            <div
               key={event._id}
               className="event-card"
-              onClick={() => navigate(`/event/${event._id}`)} // Navigate to event details page
+              onClick={() => navigate(`/event/${event._id}`)}
             >
-              <h3>{event.eventDetails.title}</h3>
-              <p>{truncateText(event.eventDetails.description, 50)}</p>
-              <p><strong>Date:</strong> {new Date(event.eventDetails.date).toLocaleDateString()}</p>
-            </li>
+              <img
+                src={event.eventDetails.image || imageSrc}
+                alt={event.eventDetails.title}
+                className="event-img"
+              />
+              <h3 className="event-title">{event.eventDetails.title}</h3>
+              <p className="event-description">
+                {truncateText(event.eventDetails.description, 100)}
+              </p>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
-        <p>No events available.</p>
+        <p className="no-events-message">No events available.</p>
       )}
     </div>
   );
