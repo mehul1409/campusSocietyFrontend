@@ -10,7 +10,7 @@ const PostEvent = () => {
   });
 
   const [file, setFile] = useState(null);
-
+  const [eventLinks, setEventLinks] = useState([{ name: '', link: '' }]);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
@@ -25,6 +25,16 @@ const PostEvent = () => {
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleEventLinkChange = (index, field, value) => {
+    const updatedEventLinks = [...eventLinks];
+    updatedEventLinks[index][field] = value;
+    setEventLinks(updatedEventLinks);
+  };
+
+  const addEventLink = () => {
+    setEventLinks([...eventLinks, { name: '', link: '' }]);
   };
 
   const handleSubmit = async (e) => {
@@ -49,6 +59,10 @@ const PostEvent = () => {
       formData.append('description', eventDetails.description);
       formData.append('date', eventDetails.date);
       formData.append('photo', file);
+
+      formData.append('eventLinks', JSON.stringify(eventLinks));
+
+      console.log(formData);
 
       const response = await fetch('https://campussociety.onrender.com/coordinator/PostEvent', {
         method: 'POST',
@@ -122,6 +136,32 @@ const PostEvent = () => {
           required
         />
       </div>
+      <div>
+          <label className="post-event-label">Event Links</label>
+          {eventLinks.map((event, index) => (
+            <div key={index} className="event-link-container">
+              <input
+                className="post-event-input"
+                type="text"
+                placeholder="Event Name"
+                value={event.name}
+                onChange={(e) => handleEventLinkChange(index, 'name', e.target.value)}
+                required
+              />
+              <input
+                className="post-event-input"
+                type="string"
+                placeholder="Event Link"
+                value={event.link}
+                onChange={(e) => handleEventLinkChange(index, 'link', e.target.value)}
+                required
+              />
+            </div>
+          ))}
+          <button type="button" className="add-event-link-button" onClick={addEventLink}>
+            + Add More
+          </button>
+        </div>
       <div>
           <label className="post-event-label">Upload Event Image</label>
           <input
