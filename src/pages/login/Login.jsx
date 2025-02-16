@@ -53,7 +53,6 @@ const Login = () => {
         throw new Error(`${data.message}`);
       }
 
-      console.log(data);
 
       const Details  = data;
       const userDetails = JSON.stringify(Details)

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Spocdashboard.css";
 import SpocCardComponent from '../../components/userCardComponet/Card';
-import imageSrc from '/mehulBansal.jpeg';
+import imageSrc from '/event.png';
 
 const Spocdashboard = () => {
   const [hubs, setHubs] = useState([]);
@@ -83,55 +83,62 @@ const Spocdashboard = () => {
     navigate(`/update-hub/${hub._id}`, { state: { hub } });
   };
 
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">Error: {error}</div>;
-
-  const spocCollegeId = spocDetails.spoc.collegeId._id;
+  const spocCollegeId = spocDetails?.spoc?.collegeId?._id || "";
   const filteredHubs = hubs.filter((hub) => String(hub.collegeId._id) === String(spocCollegeId));
+
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
+  if (error) return <div className="spoc-error">Error: {error}</div>;
 
   return (
     <div className="spoc-dashboard">
-      <h1>SPOC Dashboard</h1>
+      <h1 className="spoc-header">SPOC Dashboard</h1>
 
-      {successMessage && <div className="success-message">{successMessage}</div>}
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      {successMessage && <div className="spoc-success-message">{successMessage}</div>}
+      {errorMessage && <div className="spoc-error-message">{errorMessage}</div>}
 
       <SpocCardComponent
-        name={spocDetails.spoc.name}
-        email={spocDetails.spoc.email}
+        name={spocDetails?.spoc?.name}
+        email={spocDetails?.spoc?.email}
         imageSrc={imageSrc}
-        college={spocDetails.spoc.collegeId.collegeName}
-        collegeLocation={spocDetails.spoc.collegeId.location}
+        college={spocDetails?.spoc?.collegeId?.collegeName}
+        collegeLocation={spocDetails?.spoc?.collegeId?.location}
       />
 
-      <div className="add-button-div">
-      <button className="add-button">
-        <Link to="/addcoordinator">Add New Hub</Link>
-      </button>
+      <div className="spoc-add-button-div">
+        <button className="spoc-add-button">
+          <Link to="/addcoordinator">Add New Hub</Link>
+        </button>
       </div>
 
-      <div className="hubs-list">
+      <div className="spoc-hubs-list">
         {
           filteredHubs.length === 0 ? (
-            <p className="no-hubs-message">There is no hub related to this college.</p>
+            <p className="spoc-no-hubs-message">There is no hub related to this college.</p>
           ) : (
             filteredHubs.map((hub) => (
-              <div key={hub._id} className="hub-card">
-                <h2>{hub.hubName}</h2>
-                <p>
+              <div key={hub._id} className="spoc-hub-card">
+                <h2 className="spoc-hub-card-title">{hub.hubName}</h2>
+                <p className="spoc-hub-card-coordinator">
                   <strong>Coordinator Name:</strong>{" "}
                   {hub.coordinatorId ? hub.coordinatorId.name : "No coordinator"}
                 </p>
-                <p>
+                <p className="spoc-hub-card-email">
                   <strong>Coordinator Email:</strong>{" "}
                   {hub.coordinatorId ? hub.coordinatorId.email : "No coordinator"}
                 </p>
 
-                <div className="hub-actions">
-                  <button className="update-button" onClick={() => handleUpdate(hub)}>
+                <div className="spoc-hub-actions">
+                  <button className="spoc-update-button" onClick={() => handleUpdate(hub)}>
                     Update
                   </button>
-                  <button className="delete-button" onClick={() => handleDelete(hub._id)}>
+                  <button className="spoc-delete-button" onClick={() => handleDelete(hub._id)}>
                     Delete
                   </button>
                 </div>
