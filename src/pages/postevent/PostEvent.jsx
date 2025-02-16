@@ -9,6 +9,8 @@ const PostEvent = () => {
     date: new Date().toISOString().split('T')[0],
   });
 
+  const [file, setFile] = useState(null);
+
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
@@ -19,6 +21,10 @@ const PostEvent = () => {
       ...prevDetails,
       [name]: value,
     }));
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -36,20 +42,22 @@ const PostEvent = () => {
     }
 
     try {
+
+      const formData = new FormData();
+      formData.append('coordinatorId', coordinatorId);
+      formData.append('title', eventDetails.title);
+      formData.append('description', eventDetails.description);
+      formData.append('date', eventDetails.date);
+      formData.append('photo', file);
+
       const response = await fetch('https://campussociety.onrender.com/coordinator/PostEvent', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
+          // 'Content-Type': 'multipart/form-data',
           'coordinatorauthorize': localStorage.getItem('coordinatorauthorize'),
         },
-        body: JSON.stringify({
-          coordinatorId,
-          eventDetails: {
-            title: eventDetails.title,
-            description: eventDetails.description,
-            date: eventDetails.date,
-          },
-        }),
+        body:formData,
       });
 
       if (response.ok) {
@@ -73,7 +81,6 @@ const PostEvent = () => {
       }, 3000);
     }
   };
-
   return (
     <div className="post-event-container">
     <h2 className="post-event-heading">Post Event</h2>
@@ -113,9 +120,18 @@ const PostEvent = () => {
           value={eventDetails.date}
           onChange={handleChange}
           required
-          disabled
         />
       </div>
+      <div>
+          <label className="post-event-label">Upload Event Image</label>
+          <input
+            className="post-event-input"
+            type="file"
+            name="photo"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+        </div>
       <button className="post-event-button" type="submit">Post Event</button>
     </form>
     <hr />
