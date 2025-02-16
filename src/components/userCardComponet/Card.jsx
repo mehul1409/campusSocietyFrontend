@@ -4,6 +4,7 @@ import "./Card.css";
 
 const Card = ({ name, hubName, spocName, email, college, imageSrc, collegeLocation }) => {
   const navigate = useNavigate();
+  const [isLoading,setIsLoading] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const togglePopup = () => {
@@ -29,6 +30,7 @@ const Card = ({ name, hubName, spocName, email, college, imageSrc, collegeLocati
   };
 
   const handleLogout = async () => {
+    setIsLoading(true);
     try {
       const role = localStorage.getItem('role');
 
@@ -49,6 +51,8 @@ const Card = ({ name, hubName, spocName, email, college, imageSrc, collegeLocati
     } catch (error) {
       console.error("Logout error:", error);
       alert("Logout failed, please try again later.");
+    } finally{
+      setIsLoading(false);
     }
   };
 
@@ -68,7 +72,16 @@ const Card = ({ name, hubName, spocName, email, college, imageSrc, collegeLocati
     displayRoleLabel = 'SPOC';
   }
 
+  if (isLoading) {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
   return (
+
     <div className="coordinator-card">
       <div className="card-header"></div>
   <div className="card-image">

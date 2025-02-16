@@ -93,6 +93,14 @@ const Login = () => {
     navigate(routes[role] || routes.student);
   };
 
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="login-page">
       <h2>Login</h2>
