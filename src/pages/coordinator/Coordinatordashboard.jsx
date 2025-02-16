@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CoordinatorCard from '../../components/userCardComponet/Card';
-import imageSrc from '/mehulBansal.jpeg';
+import imageSrc from '/event.png';
 import './Coordinatordashboards.css';
 
 const CoordinatorDashboard = () => {
@@ -112,7 +112,6 @@ const CoordinatorDashboard = () => {
       />
 
       <button className="post-event-button" onClick={handlePostEvent}>Post New Event</button>
-      <hr />
 
       <h2>My Events</h2>
 
