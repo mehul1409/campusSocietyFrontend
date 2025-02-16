@@ -70,6 +70,10 @@ const Card = ({ name, hubName, spocName, email, college, imageSrc, collegeLocati
 
   return (
     <div className="coordinator-card">
+      <div className="card-header"></div>
+  <div className="card-image">
+    <img src={imageSrc} alt="Profile" />
+  </div>
       <div className="details">
         <div className="card-details">
           <h3 className="username">{name}</h3>
