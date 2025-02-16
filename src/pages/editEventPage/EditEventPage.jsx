@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './EditEventPage.css'
+import './EditEventPage.css';
 
 const EditEventPage = () => {
   const [eventDetails, setEventDetails] = useState({
@@ -10,6 +10,7 @@ const EditEventPage = () => {
   });
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { eventId } = useParams();
 
@@ -29,7 +30,6 @@ const EditEventPage = () => {
         }
 
         const data = await response.json();
-        console.log('Fetched Event:', data);
         if (data.event) {
           setEventDetails({
             title: data.event.eventDetails.title || '',
@@ -41,7 +41,8 @@ const EditEventPage = () => {
         }
       } catch (error) {
         setErrorMessage('Error fetching event details. Please try again later.');
-        console.error('Error fetching event:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -79,9 +80,16 @@ const EditEventPage = () => {
     } catch (error) {
       setErrorMessage('Error updating event. Please try again later.');
       setTimeout(() => setErrorMessage(''), 2000);
-      console.error('Error editing event:', error);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="edit-event-container editEventContainer">
@@ -143,4 +151,3 @@ const EditEventPage = () => {
 };
 
 export default EditEventPage;
-
