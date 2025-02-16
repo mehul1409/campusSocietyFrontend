@@ -13,6 +13,7 @@ const Register = () => {
   const [colleges, setColleges] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // Fetch colleges from the API
@@ -58,6 +59,7 @@ const Register = () => {
       setError('Please select a college.');
       return;
     }
+    setLoading(true);
 
     try {
       const response = await axios.post('https://campussociety.onrender.com/student/register', formData);
@@ -72,8 +74,18 @@ const Register = () => {
       }
     } catch (err) {
       setError('An error occurred during registration. Please try again.');
+    } finally{
+      setLoading(false)
     }
   };
+
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="register-page">
