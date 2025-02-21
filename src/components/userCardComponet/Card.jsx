@@ -72,13 +72,6 @@ const Card = ({ name, hubName, spocName, email, college, imageSrc, collegeLocati
     displayRoleLabel = 'SPOC';
   }
 
-  if (isLoading) {
-    return (
-      <div className="loader-container">
-        <div className="loader"></div>
-      </div>
-    );
-  }
 
   return (
 

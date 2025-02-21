@@ -89,12 +89,11 @@
 }
 
 .hub-card .hub-images {
-  width: 50px; /* Adjust width to maintain a circular shape */
-  height: 50px; /* Match height to width */
+  width: 20%; 
   object-fit: cover;
-  border-radius: 50%; /* Makes the image circular */
-  margin: 0 auto 10px; /* Centers the image and adds spacing */
-  border: 2px solid #00d4ff; /* Optional: Adds a border around the circle */
+  border-radius: 50%; 
+  margin: 0 auto 2.5%; 
+  border: 2px solid #00d4ff; 
 }
 
 .hub-card h3 {

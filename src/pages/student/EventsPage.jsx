@@ -8,7 +8,7 @@ const EventsPage = () => {
   const [hubDetails, setHubDetails] = useState(null);
   const [events, setEvents] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(true); // Loader state
+  const [isLoading, setIsLoading] = useState(true); 
   const token = localStorage.getItem('studentauthorize');
   const navigate = useNavigate();
 
@@ -17,7 +17,6 @@ const EventsPage = () => {
       try {
         setIsLoading(true);
 
-        // Fetch hub details and events simultaneously
         const [hubResponse, eventsResponse] = await Promise.all([
           fetch('https://campussociety.onrender.com/api/getAllHubs', {
             method: 'GET',
@@ -43,13 +42,13 @@ const EventsPage = () => {
           throw new Error('Failed to fetch events.');
         }
 
-        // Parse responses
         const hubData = await hubResponse.json();
         const matchingHub = hubData.find((hub) => hub.coordinatorId._id === coordinatorId);
         setHubDetails(matchingHub);
 
         const eventsData = await eventsResponse.json();
         setEvents(eventsData);
+        console.log(eventsData)
       } catch (error) {
         console.error('Error fetching data:', error);
         setErrorMessage('An error occurred while fetching data.');
@@ -68,6 +67,11 @@ const EventsPage = () => {
     return text;
   };
 
+  const renderDescriptionWithNewLines = (description) => {
+    const formattedDescription = description.replace(/\r?\n/g, '<br />');
+    return { __html: formattedDescription };
+  };
+  
   return (
     <div className="events-page">
       {isLoading ? (
@@ -90,9 +94,9 @@ const EventsPage = () => {
               <li
                 key={event._id}
                 className="event-card"
-                onClick={() => navigate(`/event/${event._id}`)}
+                onClick={() => {navigate(`/event/${event._id}`);window.scrollTo(0, 0);}}
               >
-                <img className="hub-image" src="/event.png" alt="Event" />
+                <img className="hub-image" src={event.eventDetails.photo || '/event.png'} alt="Event" />
                 <div className="event-details-overlay">
                   <h3>{event.eventDetails.title}</h3>
                   <p>{truncateText(event.eventDetails.description, 50)}</p>
