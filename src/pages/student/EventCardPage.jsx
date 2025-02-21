@@ -41,6 +41,11 @@ const EventCardPage = () => {
     fetchEventDetails();
   }, [eventId]);
 
+  const renderDescriptionWithNewLines = (description) => {
+    const formattedDescription = description.replace(/\r?\n/g, '<br />');
+    return { __html: formattedDescription };
+  };
+
   return (
     <div className="event-card-page">
       {isLoading ? (
@@ -57,20 +62,27 @@ const EventCardPage = () => {
                 <br />
                 {eventDetails.event.eventDetails.title}
               </h1>
-              <div className="event-buttons">
+              <div className="">
                 
               </div>
               <div className='event-intro12'>
               <img
                 className="event-image"
-                src="/event.png"
+                src={eventDetails.event.eventDetails.photo ||'/event.png'}
                 alt={eventDetails.event.eventDetails.title}
               />
               <div className="event-section">
                 <h2>EVENT INTRODUCTION</h2>
                 <ul>
-                  <li>{eventDetails.event.eventDetails.description}</li>
+                  <li dangerouslySetInnerHTML={renderDescriptionWithNewLines(
+                        eventDetails.event.eventDetails.description
+                      )} />
                 </ul>
+                <div className='eventButton'>
+              {eventDetails.event.media.map((media) => (
+                <button key={media.name} className='event-form-link'><a href={media.link} target="_blank">{media.name}</a></button>
+              ))}
+              </div>
               </div>
               </div>
             </div>

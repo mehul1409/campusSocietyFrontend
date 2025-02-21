@@ -61,6 +61,7 @@ const Studentdashboard = () => {
       if (spocResponse.ok && hubsResponse.ok) {
         const spocDetails = await spocResponse.json();
         const hubs = await hubsResponse.json();
+        console.log(hubs);
         setSpocDetails(spocDetails);
         setHubs(hubs);
       } else {
@@ -85,6 +86,7 @@ const Studentdashboard = () => {
   };
 
   const handleHubClick = (coordinatorId) => {
+    window.scrollTo(0, 0);
     navigate(`/hub/${coordinatorId}/events`);
   };
 
@@ -116,7 +118,7 @@ const Studentdashboard = () => {
     hubs.map((hub) => (
       <div key={hub._id} className="hub-card" onClick={() => handleHubClick(hub.coordinatorId._id)}>
         <img
-          src={hub.image || '/osdc.png'} // Replace with your default image path
+          src={hub.photo || '/osdc.png'} // Replace with your default image path
           alt={hub.hubName}
           className="hub-images"
         />

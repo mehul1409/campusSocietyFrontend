@@ -13,7 +13,7 @@ import UpdateHub from './pages/spoc/UpdateHub';
 import ChangePassword from './pages/changePassword/ChangePassword';
 import PostEvent from './pages/postevent/PostEvent';
 import EditEventPage from './pages/editEventPage/EditEventPage';
-import About from './components/About';
+import About from './components/about/About';
 import Features from './components/Features'
 import Contact from './components/Contact'
 import EventsPage from './pages/student/EventsPage';

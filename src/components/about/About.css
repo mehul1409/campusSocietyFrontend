@@ -1,0 +1,90 @@
+
+/* ABOUT SECTION STYLING */
+.about-page1{
+    padding:3%;
+    background-image: url("/image.png");
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.about-section1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    text-align: center;
+    background: transparent;
+  }
+  
+  .about-content1 {
+    max-width: 80%;
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 239, 175, 0.15); /* Glassmorphism effect */
+    box-shadow: 0 0 20px rgba(255, 239, 175, 0.2);
+    border: 1px solid rgba(255, 239, 175, 0.3);
+    animation: fadeIn 1.5s forwards;
+  }
+  
+  .about-title1 {
+    font-family: "Rye", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffedc8;
+    text-shadow: 0 0 10px #7e4520;
+  }
+  
+  .about-text1 {
+    font-family: "Glass Antiqua", serif;
+    font-size: 1.5rem;
+    color: #fff9c4;
+    text-shadow: 0 0 8px rgba(255, 239, 175, 0.3);
+    line-height: 1.7;
+  }
+  
+  .about-text1 span {
+    font-weight: bold;
+    color: #ffdb58;
+    text-shadow: 0 0 10px #ff8c00;
+  }
+  
+  /* MEDIA QUERY FOR RESPONSIVENESS */
+  @media (max-width: 768px) {
+    .about-section1{
+      padding:5% 0;
+    }
+    .about-content1 {
+      max-width: 95%;
+      padding: 20px;
+    }
+  
+    .about-title1 {
+      font-size: 2.2rem;
+    }
+  
+    .about-text1 {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-content1 {
+      max-width: 95%;
+      padding: 15px;
+    }
+  
+    .about-title1 {
+      font-size: 1.8rem;
+    }
+  
+    .about-text1 {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  }
+  
