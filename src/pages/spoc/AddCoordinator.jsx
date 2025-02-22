@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 const AddCoordinator = () => {
   const navigate = useNavigate();
 
@@ -8,26 +9,27 @@ const AddCoordinator = () => {
     coordinatorName: "",
     coordinatorEmail: "",
   });
-  const token = localStorage.getItem('spocauthorize')
+
+  const token = localStorage.getItem("spocauthorize");
+  const spocdetails = JSON.parse(localStorage.getItem("spocdetails"));
+  const collegeId = spocdetails?.spoc?.collegeId?._id || "";
 
   const [file, setFile] = useState(null);
-
-  const spocdetails = JSON.parse(localStorage.getItem('spocdetails'));
-  const collegeId = spocdetails?.spoc?.collegeId?._id;
-
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState(null);
 
   useEffect(() => {
-    const storedDetails = localStorage.getItem('spocdetails');
-    if (!storedDetails) {
-      window.location.href = '/';
+    if (!spocdetails) {
+      window.location.href = "/";
     }
   }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleFileChange = (e) => {
@@ -39,26 +41,39 @@ const AddCoordinator = () => {
     setLoading(true);
     setResponseMessage(null);
 
+    // Debugging: Ensure formData is correct
+    console.log("Submitting form with data:", formData);
+
+    if (!collegeId) {
+      setResponseMessage({ type: "error", message: "College ID is missing." });
+      setLoading(false);
+      return;
+    }
+
     try {
       const formDataToSend = new FormData();
       formDataToSend.append("collegeId", collegeId);
-      formDataToSend.append("hubName", formData.hubName);
-      formDataToSend.append("coordinatorName", formData.coordinatorName);
-      formDataToSend.append("coordinatorEmail", formData.coordinatorEmail);
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value) formDataToSend.append(key, value);
+      });
+
       if (file) {
         formDataToSend.append("photo", file);
       }
 
-      console.log("Token being sent:", formDataToSend);
-      const response = await fetch("https://campussociety.onrender.com/spoc/createHub", {
+      // Debugging: Log FormData before sending
+      for (let pair of formDataToSend.entries()) {
+        console.log(pair[0] + ": " + pair[1]);
+      }
+
+      const response = await fetch("http://localhost:3004/spoc/createHub", {
         method: "POST",
         headers: {
           "access-token": "tcZALrHkfh0fSe5WQkCuTtHGJbvn4VI1",
-          "spocauthorize": token,
+          spocauthorize: token,
         },
         body: formDataToSend,
       });
-
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -76,9 +91,11 @@ const AddCoordinator = () => {
         coordinatorEmail: "",
       });
 
+      setFile(null);
+
       setTimeout(() => {
-        navigate('/spoc-dashboard');
-      }, 2000)
+        navigate("/spoc-dashboard");
+      }, 2000);
     } catch (error) {
       setResponseMessage({
         type: "error",
@@ -89,7 +106,6 @@ const AddCoordinator = () => {
     }
   };
 
-
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
       <h2>Create a New Hub</h2>
@@ -99,17 +115,13 @@ const AddCoordinator = () => {
             marginTop: "20px",
             padding: "10px",
             color: responseMessage.type === "success" ? "green" : "red",
-            border:
-              responseMessage.type === "success"
-                ? "1px solid green"
-                : "1px solid red",
+            border: `1px solid ${responseMessage.type === "success" ? "green" : "red"}`,
           }}
         >
           {responseMessage.message}
         </div>
       )}
       <form onSubmit={handleSubmit}>
-
         <div style={{ marginBottom: "15px" }}>
           <label htmlFor="hubName">Hub Name:</label>
           <input
@@ -179,7 +191,7 @@ const AddCoordinator = () => {
         <div className="aboveimage">
           "Join the Campus Society — Connect, Collaborate, and Grow Together!"
         </div>
-        <img src="/mainLogo.png" alt="" />
+        <img src="/mainLogo.png" alt="Main Logo" />
         <div className="belowimage">
           "Proudly developed for the Campus Community with passion and dedication."
         </div>
