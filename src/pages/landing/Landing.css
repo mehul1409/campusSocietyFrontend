@@ -285,8 +285,9 @@
 
 .contact-title {
   font-size: 26px;
-  font-family: 'MedievalSharp', cursive;
-  color: #f6f6c4;
+  font-family: "Rye", serif;
+  color: #ffedc8;
+  text-shadow: 0 0 10px #7e4520;
   margin-bottom: 15px;
 }
 

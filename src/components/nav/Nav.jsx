@@ -47,8 +47,8 @@ const Nav = () => {
       <nav>
         <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
           <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-          <li><a href="#about" onClick={() => handleScroll("about")}>About</a></li>
-          <li><a href="#contact" onClick={() => handleScroll("contact")}>Contact</a></li>
+          <li><Link to="/about" onClick={closeMenu}>About</Link></li>
+          <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
         </ul>
       </nav>
       <div className="hamburger" onClick={toggleMenu}>
