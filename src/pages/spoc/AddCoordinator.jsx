@@ -13,7 +13,7 @@ const AddCoordinator = () => {
   const [file, setFile] = useState(null);
 
   const spocdetails = JSON.parse(localStorage.getItem('spocdetails'));
-  const collegeId = spocdetails?.spoc?.collegeId?._id;  
+  const collegeId = spocdetails?.spoc?.collegeId?._id;
 
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState(null);
@@ -49,16 +49,16 @@ const AddCoordinator = () => {
         formDataToSend.append("photo", file);
       }
 
-      console.log("Token being sent:", token); 
+      console.log("Token being sent:", formDataToSend);
       const response = await fetch("https://campussociety.onrender.com/spoc/createHub", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           "access-token": "tcZALrHkfh0fSe5WQkCuTtHGJbvn4VI1",
           "spocauthorize": token,
         },
-        body:formDataToSend,
+        body: formDataToSend,
       });
+
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -76,9 +76,9 @@ const AddCoordinator = () => {
         coordinatorEmail: "",
       });
 
-      setTimeout(()=>{
+      setTimeout(() => {
         navigate('/spoc-dashboard');
-      },2000)
+      }, 2000)
     } catch (error) {
       setResponseMessage({
         type: "error",
@@ -88,7 +88,7 @@ const AddCoordinator = () => {
       setLoading(false);
     }
   };
-  
+
 
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
