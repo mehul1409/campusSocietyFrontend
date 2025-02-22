@@ -45,7 +45,7 @@ const Register = () => {
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@mail\.jiit\.ac\.in$/;
     if (!emailRegex.test(formData.email)) {
-      setError("Please enter a valid email address");
+      setError("Register with GSUIT Id only");
       return false;
     }
 
