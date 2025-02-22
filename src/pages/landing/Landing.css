@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=MedievalSharp&family=Rye&family=Acme&display=swap");
 
-
-
 .landing-page {
-  background-image: url("/image.png");
+  background-image: url("/image2.png");
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -12,9 +10,11 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-.hero-section{
-  height:100vh;
+
+.hero-section {
+  height: 100vh;
 }
+
 .overlay {
   background: rgba(0, 0, 0, 0.186);
   display: flex;
@@ -23,7 +23,6 @@
   justify-content: center;
 }
 
-/* TEXT STYLES & ANIMATIONS */
 .jiit,
 .presents,
 .fest,
@@ -37,15 +36,20 @@
   font-weight: 800;
   font-style: normal;
   color: rgb(247, 247, 190);
-  font-size: 2rem;
-  margin-bottom:0;
+  font-size: 2.3rem;
+  margin-bottom: 0;
+  text-shadow:
+    0 0 5px #332110,
+    0 0 10px #3d2411,
+    0 0 15px #7E4520,
+    0 0 20px rgba(193, 106, 1, 0.8);
 }
 
 .presents {
   font-family: "Glass Antiqua", serif;
   font-weight: 400;
   font-style: normal;
-  color: rgb(255, 239, 175);
+  color: rgb(255, 255, 255);
   text-shadow: 0 0 10px #9b723c, 0 0 20px #ff9800, 0 0 30px #ff5722;
   font-size: 1.7rem;
 }
@@ -56,12 +60,12 @@
   font-style: normal;
   font-size: 2rem;
   color: #fac4b2;
-  text-shadow: 
-    0 0 5px #332110, 
-    0 0 10px #3d2411, 
-    0 0 15px #7E4520, 
+  text-shadow:
+    0 0 5px #332110,
+    0 0 10px #3d2411,
+    0 0 15px #7E4520,
     0 0 20px rgba(11, 6, 0, 0.8);
-    margin: 0;
+  margin: 0;
 }
 
 .synergy-text {
@@ -70,42 +74,46 @@
   font-style: normal;
   font-size: 6.5rem;
   color: #ffedc8;
-  text-shadow: 
-    0 0 5px #df934b, 
-    0 0 10px #251406, 
-    0 0 15px #211107, 
+  -webkit-text-stroke: 2px #90501c;
+  text-shadow:
+    -2px -2px 0 #764014,
+    2px -2px 0 #251406,
+    -2px 2px 0 #251406,
+    2px 2px 0 #251406,
+    0 0 5px #df934b,
+    0 0 10px #251406,
+    0 0 15px #211107,
     0 0 20px rgba(255, 255, 255, 0.8);
+
   margin: 0px;
 }
 
-.hero-content{
+.hero-content {
   padding: 10px;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* TEXT FADE-IN ANIMATION */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-
-/* BUTTON STYLING */
 .button-container {
   margin-top: 3%;
   display: flex;
   gap: 20px;
   justify-content: center;
-  animation: fadeIn 1.5s forwards ;
+  animation: fadeIn 1.5s forwards;
 }
 
 .medieval-btn {
@@ -130,11 +138,11 @@
 }
 
 
-/* Countdown Timer Styles */
 .countdown-timer {
   margin-top: 40px;
   padding: 20px;
   display: flex;
+  flex-direction: column;
   gap: 15px;
   justify-content: center;
   border-radius: 15px;
@@ -151,15 +159,16 @@
   font-family: "Rye", serif;
   text-shadow: 0 0 10px #7e4520;
   margin-right: 20px;
-  margin:0;
+  margin: 0;
 }
-.time-boxes{
+
+.time-boxes {
   display: flex;
-  gap:15px;
+  gap: 15px;
   justify-content: center;
 }
 
-.time-box{
+.time-box {
   padding: 10px 15px;
   background: rgba(255, 239, 175, 0.1);
   border-radius: 10px;
@@ -168,6 +177,7 @@
   color: #000000;
   text-align: center;
 }
+
 .time-box span {
   font-size: 2rem;
   font-weight: bold;
@@ -182,11 +192,12 @@
 
 
 .next-page {
-  margin-top: 10%;
+  margin-top: 7%;
   cursor: pointer;
   animation: fadeIn 1.5s forwards;
   display: flex;
   justify-content: center;
+  z-index: -999;
 }
 
 .arrow-icon {
@@ -197,90 +208,17 @@
   animation: moveUpDown 1.5s infinite alternate ease-in-out;
 }
 
-/* Smooth up-down movement */
 @keyframes moveUpDown {
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(-10px);
   }
 }
 
 
-@media (max-width: 700px) {
-
-  .hero-section{
-    display: flex;
-    justify-content: center;
-  }
-
-  .jiit {
-    font-size: 1.5rem;
-    margin-bottom:0;
-  }
-
-  .presents {
-    font-size: 1.5rem;
-    margin-top:0;
-  }
-
-  .fest {
-    font-size: 1.4rem;
-  }
-
-  .synergy-text {
-    font-size: 3.5rem;
-  }
-
-  .medieval-btn {
-    font-size: 0.9rem;
-    padding: 10px 20px;
-  }
-
-  .countdown-timer {
-    width: 90%;
-    margin-top:20%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .countdown-timer h2{
-    font-size: 1rem;
-  }
-
-  .time-boxes {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 330px; /* Ensures boxes don’t stretch too much */
-    gap: 5px;
-  }
-
-  .time-box {
-    flex: 1;
-    min-width: 40px;
-    padding: 5px;
-  }
-
-  .time-box span {
-    font-size: 1.5rem;
-  }
-
-  .time-box small {
-    font-size: 0.8rem;
-  }
-  .next-page {
-    margin-top: 25%;
-  }
-  .button-container {
-    margin-top:10%;
-  }
-}
-
-
-/* ABOUT SECTION STYLING */
 .about-section {
   display: flex;
   justify-content: center;
@@ -296,7 +234,7 @@
   padding: 40px;
   border-radius: 20px;
   backdrop-filter: blur(12px);
-  background: rgba(255, 239, 175, 0.15); /* Glassmorphism effect */
+  background: rgba(255, 239, 175, 0.15);
   box-shadow: 0 0 20px rgba(255, 239, 175, 0.2);
   border: 1px solid rgba(255, 239, 175, 0.3);
   animation: fadeIn 1.5s forwards;
@@ -324,41 +262,6 @@
   text-shadow: 0 0 10px #ff8c00;
 }
 
-/* MEDIA QUERY FOR RESPONSIVENESS */
-@media (max-width: 768px) {
-  .about-section{
-    padding:5% 0;
-    margin:5%;
-  }
-  .about-content {
-    max-width: 95%;
-    padding: 20px;
-  }
-
-  .about-title {
-    font-size: 2.2rem;
-  }
-
-  .about-text {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-content {
-    max-width: 95%;
-    padding: 15px;
-  }
-
-  .about-title {
-    font-size: 1.8rem;
-  }
-
-  .about-text {
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-}
 
 
 .contact-section {
@@ -368,7 +271,7 @@
   padding: 40px 20px;
   border-radius: 15px;
   text-align: center;
-  margin:10%;
+  margin: 10%;
   width: 80%;
 }
 
@@ -425,4 +328,126 @@
 
 .contact-info a:hover {
   text-decoration: underline;
+}
+
+
+@media (max-width: 700px) {
+
+  .landing-page {
+    background-image: url("/image.png");
+  }
+
+  .hero-section {
+    display: flex;
+    justify-content: center;
+  }
+
+  .jiit {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .presents {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+
+  .fest {
+    font-size: 1.4rem;
+  }
+
+  .synergy-text {
+    font-size: 3.5rem;
+    -webkit-text-stroke: 1px #90501c;
+  }
+
+  .medieval-btn {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  .countdown-timer {
+    width: 90%;
+    margin-top: 20%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .countdown-timer h2 {
+    font-size: 1rem;
+  }
+
+  .time-boxes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 330px;
+    gap: 5px;
+  }
+
+  .time-box {
+    flex: 1;
+    min-width: 40px;
+    padding: 5px;
+  }
+
+  .time-box span {
+    font-size: 1.5rem;
+  }
+
+  .time-box small {
+    font-size: 0.8rem;
+  }
+
+  .next-page {
+    margin-top: 25%;
+  }
+
+  .button-container {
+    margin-top: 10%;
+  }
+
+  .next-page {
+    margin: 10%;
+    z-index: 4;
+  }
+
+  .about-section {
+    padding: 5% 0;
+    margin: 5%;
+  }
+
+  .about-content {
+    max-width: 95%;
+    padding: 20px;
+  }
+
+  .about-title {
+    font-size: 2.2rem;
+  }
+
+  .about-text {
+    font-size: 1.2rem;
+  }
+
+  .time-box small {
+    color: black;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-content {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .about-title {
+    font-size: 1.8rem;
+  }
+
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 }
