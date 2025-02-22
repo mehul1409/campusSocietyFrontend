@@ -162,7 +162,7 @@ const AddCoordinator = () => {
         </div>
 
         <div>
-          <label className="post-event-label">Upload Event Image</label>
+          <label className="post-event-label">Upload Hub Logo</label>
           <input
             className="post-event-input"
             type="file"

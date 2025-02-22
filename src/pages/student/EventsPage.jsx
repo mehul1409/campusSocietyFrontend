@@ -99,8 +99,8 @@ const EventsPage = () => {
                 <img className="hub-image" src={event.eventDetails.photo || '/event.png'} alt="Event" />
                 <div className="event-details-overlay">
                   <h3>{event.eventDetails.title}</h3>
-                  <p>{truncateText(event.eventDetails.description, 50)}</p>
-                  {/* <p><strong>Date:</strong> {new Date(event.eventDetails.date).toLocaleDateString()}</p> */}
+                  {/* <p>{truncateText(event.eventDetails.description, 50)}</p> */}
+                  <p><strong>Date:</strong> {new Date(event.eventDetails.date).toLocaleDateString()}</p>
                 </div>
               </li>
             ))}
