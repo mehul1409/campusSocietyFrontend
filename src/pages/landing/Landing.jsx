@@ -4,6 +4,26 @@ import "./Landing.css";
 
 const Landing = () => {
   const navigate = useNavigate();
+
+  const navigateToRolePage = (role) => {
+    const roleMapping = {
+      spoc: '/spoc-dashboard',
+      coordinator: '/coordinator-dashboard',
+      student: '/student-dashboard',
+    };
+
+    return roleMapping[role];
+  };
+
+  useEffect(() => {
+    const role = localStorage.getItem('role');
+    if (role) {
+      const redirectTo = navigateToRolePage(role);
+      navigate(redirectTo);
+    } else {
+      navigate('/');
+    }
+  },[navigate]);
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [message, setMessage] = useState("");
@@ -31,13 +51,6 @@ const Landing = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -157,9 +170,6 @@ const Landing = () => {
 
         </div>
 
-
-
-        {/* Contact Section */}
         <div className="contact-section" id="contact">
           <div className="contact-content">
             <h1 className="contact-title">CONTACT US</h1>
