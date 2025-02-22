@@ -66,7 +66,7 @@ const AddCoordinator = () => {
         console.log(pair[0] + ": " + pair[1]);
       }
 
-      const response = await fetch("http://localhost:3004/spoc/createHub", {
+      const response = await fetch("https://campussociety.onrender.com/spoc/createHub", {
         method: "POST",
         headers: {
           "access-token": "tcZALrHkfh0fSe5WQkCuTtHGJbvn4VI1",
