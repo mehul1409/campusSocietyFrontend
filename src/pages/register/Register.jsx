@@ -43,6 +43,12 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@mail\.jiit\.ac\.in$/;
+    if (!emailRegex.test(formData.email)) {
+      setError("Please enter a valid email address");
+      return false;
+    }
+
     if (!formData.name) {
       setError('Name is required.');
       return;
