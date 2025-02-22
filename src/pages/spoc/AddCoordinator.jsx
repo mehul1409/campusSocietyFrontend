@@ -10,6 +10,8 @@ const AddCoordinator = () => {
   });
   const token = localStorage.getItem('spocauthorize')
 
+  const [file, setFile] = useState(null);
+
   const spocdetails = JSON.parse(localStorage.getItem('spocdetails'));
   const collegeId = spocdetails?.spoc?.collegeId?._id;  
 
@@ -28,12 +30,25 @@ const AddCoordinator = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setResponseMessage(null);
 
     try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("collegeId", collegeId);
+      formDataToSend.append("hubName", formData.hubName);
+      formDataToSend.append("coordinatorName", formData.coordinatorName);
+      formDataToSend.append("coordinatorEmail", formData.coordinatorEmail);
+      if (file) {
+        formDataToSend.append("photo", file);
+      }
+
       console.log("Token being sent:", token); 
       const response = await fetch("https://campussociety.onrender.com/spoc/createHub", {
         method: "POST",
@@ -42,14 +57,7 @@ const AddCoordinator = () => {
           "access-token": "tcZALrHkfh0fSe5WQkCuTtHGJbvn4VI1",
           "spocauthorize": token,
         },
-        body: JSON.stringify({
-          collegeId : collegeId,
-          hubName: formData.hubName,
-          coordinatorDetails: {
-            name: formData.coordinatorName,
-            email: formData.coordinatorEmail,
-          },
-        }),
+        body:formDataToSend,
       });
 
       if (!response.ok) {
@@ -138,6 +146,17 @@ const AddCoordinator = () => {
             onChange={handleChange}
             required
             style={{ width: "100%", padding: "8px" }}
+          />
+        </div>
+
+        <div>
+          <label className="post-event-label">Upload Event Image</label>
+          <input
+            className="post-event-input"
+            type="file"
+            name="photo"
+            accept="image/*"
+            onChange={handleFileChange}
           />
         </div>
 
