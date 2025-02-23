@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StudentCard from '../../components/userCardComponet/Card';
 import './Studentdashboard.css'; 
-import imageSrc from '/event.png';
+import imageSrc from '/carnival.png';
 
 const Studentdashboard = () => {
   const [studentDetails, setStudentDetails] = useState(null);
@@ -118,7 +118,7 @@ const Studentdashboard = () => {
     hubs.map((hub) => (
       <div key={hub._id} className="hub-card" onClick={() => handleHubClick(hub.coordinatorId._id)}>
         <img
-          src={hub.photo || '/osdc.png'} // Replace with your default image path
+          src={hub.photo || '/carnival.png'}
           alt={hub.hubName}
           className="hub-images"
         />

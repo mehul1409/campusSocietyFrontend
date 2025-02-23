@@ -17,14 +17,19 @@ const Login = () => {
       setError("Email and Password are required");
       return false;
     }
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@mail\.jiit\.ac\.in$/;
-    if (!emailRegex.test(formData.email)) {
-      setError("Login with GSUIT Id only");
-      return false;
+    
+    if (formData.role === "student") {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(formData.email)) {
+        setError("Login with GSUIT ID only");
+        return false;
+      }
     }
+    
     setError(null);
     return true;
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
