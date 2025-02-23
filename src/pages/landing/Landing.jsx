@@ -5,6 +5,13 @@ import "./Landing.css";
 const Landing = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (localStorage.getItem("isCleared") !== "1") {
+      localStorage.clear();
+      localStorage.setItem("isCleared", "1");
+    }
+  }, []);
+
   const navigateToRolePage = (role) => {
     const roleMapping = {
       spoc: '/spoc-dashboard',
