@@ -18,6 +18,7 @@ import Features from './components/Features'
 import Contact from './components/contact/Contact'
 import EventsPage from './pages/student/EventsPage';
 import EventCardPage from './pages/student/EventCardPage';
+import NotFound from './PageNotFound';
 
 const AppRouter = () => {
     return (
@@ -40,6 +41,7 @@ const AppRouter = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/hub/:coordinatorId/events" element={<EventsPage />} />
             <Route path="/event/:eventId" element={<EventCardPage />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };
