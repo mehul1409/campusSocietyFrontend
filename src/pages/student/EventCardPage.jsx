@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import {marked} from 'marked'
 import './EventCardPage.css';
 
 const EventCardPage = () => {
@@ -42,10 +43,10 @@ const EventCardPage = () => {
   }, [eventId]);
 
   const renderDescriptionWithNewLines = (description) => {
-    const formattedDescription = description.replace(/\r?\n/g, '<br />');
-    return { __html: formattedDescription };
+    const markdownToHtml = marked(description, { breaks: true }); 
+    return { __html: markdownToHtml };
   };
-
+  
   return (
     <div className="event-card-page">
       {isLoading ? (
