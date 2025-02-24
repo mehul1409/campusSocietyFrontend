@@ -19,6 +19,7 @@ import Contact from './components/contact/Contact'
 import EventsPage from './pages/student/EventsPage';
 import EventCardPage from './pages/student/EventCardPage';
 import NotFound from './PageNotFound';
+import PrivateRoute from './PrivateRoute';
 
 const AppRouter = () => {
     return (
@@ -39,8 +40,8 @@ const AppRouter = () => {
             <Route path="/about" element={<About />} />
             <Route path="/features" element={<Features />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/hub/:coordinatorId/events" element={<EventsPage />} />
-            <Route path="/event/:eventId" element={<EventCardPage />} />
+            <Route path="/hub/:coordinatorId/events" element={<PrivateRoute element={<EventsPage />} />} />
+            <Route path="/event/:eventId" element={<PrivateRoute element={<EventCardPage />} />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
