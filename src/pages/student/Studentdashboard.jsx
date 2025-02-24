@@ -8,6 +8,8 @@ const Studentdashboard = () => {
   const [studentDetails, setStudentDetails] = useState(null);
   const [spocDetails, setSpocDetails] = useState(null);
   const [hubs, setHubs] = useState([]);
+  const [filteredHubs, setFilteredHubs] = useState([]); 
+  const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -64,6 +66,7 @@ const Studentdashboard = () => {
         console.log(hubs);
         setSpocDetails(spocDetails);
         setHubs(hubs);
+        setFilteredHubs(hubs);
       } else {
         setErrorMessageWithTimeout('Failed to fetch data from server.');
       }
@@ -90,6 +93,17 @@ const Studentdashboard = () => {
     navigate(`/hub/${coordinatorId}/events`);
   };
 
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredHubs(hubs);
+    } else {
+      const filtered = hubs.filter(hub => 
+        hub.hubName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredHubs(filtered);
+    }
+  }, [searchTerm, hubs]);
+
   if (isLoading) {
     return (
       <div className="loader-container">
@@ -111,11 +125,22 @@ const Studentdashboard = () => {
         spocName={spocDetails?.name || 'N/A'}
         collegeLocation={studentDetails.student.collegeId.location}
       />
+<div className='search-container'>
+<input
+        type="text"
+        className="search-bar"
+        placeholder="Search for a hub..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+</div>
+
+     
 
       <h2>All Hubs</h2>
       <div className="hub-cards-container">
-        {hubs.length > 0 ? (
-          hubs.map((hub) => (
+        {filteredHubs.length > 0 ? (
+          filteredHubs.map((hub) => (
             <div id="hubcard" key={hub._id}>
               <div key={hub._id} className="hub-card" onClick={() => handleHubClick(hub.coordinatorId._id)}>
               <img
