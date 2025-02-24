@@ -146,7 +146,6 @@ const PostEvent = () => {
                 placeholder="Event Name"
                 value={event.name}
                 onChange={(e) => handleEventLinkChange(index, 'name', e.target.value)}
-                required
               />
               <input
                 className="post-event-input"
@@ -154,7 +153,6 @@ const PostEvent = () => {
                 placeholder="Event Link"
                 value={event.link}
                 onChange={(e) => handleEventLinkChange(index, 'link', e.target.value)}
-                required
               />
             </div>
           ))}

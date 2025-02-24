@@ -58,7 +58,7 @@ const EventCardPage = () => {
           {eventDetails ? (
             <div className="event-details">
               <h1>
-                <span>Events Impression'25</span>
+                <span>Events Synergy'25</span>
                 <br />
                 {eventDetails.event.eventDetails.title}
               </h1>
