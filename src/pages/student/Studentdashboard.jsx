@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StudentCard from '../../components/userCardComponet/Card';
-import './Studentdashboard.css'; 
+import './Studentdashboard.css';
 import imageSrc from '/carnival.png';
 
 const Studentdashboard = () => {
@@ -114,24 +114,26 @@ const Studentdashboard = () => {
 
       <h2>All Hubs</h2>
       <div className="hub-cards-container">
-  {hubs.length > 0 ? (
-    hubs.map((hub) => (
-      <div key={hub._id} className="hub-card" onClick={() => handleHubClick(hub.coordinatorId._id)}>
-        <img
-          src={hub.photo || '/carnival.png'}
-          alt={hub.hubName}
-          className="hub-images"
-        />
-        <div>
-        <h3>{hub.hubName}</h3>
-        <p><strong>Coordinator Name:</strong> {hub.coordinatorId?.name}</p>
-        </div>
+        {hubs.length > 0 ? (
+          hubs.map((hub) => (
+            <div id="hubcard" key={hub._id}>
+              <div key={hub._id} className="hub-card" onClick={() => handleHubClick(hub.coordinatorId._id)}>
+              <img
+                src={hub.photo || '/carnival.png'}
+                alt={hub.hubName}
+                className="hub-images"
+              />
+              <div className='hubCardPara'>
+                <h3>{hub.hubName}</h3>
+                <p><strong>Coordinator Name:</strong> {hub.coordinatorId?.name}</p>
+              </div>
+            </div>
+            </div>
+          ))
+        ) : (
+          <p>No hubs available.</p>
+        )}
       </div>
-    ))
-  ) : (
-    <p>No hubs available.</p>
-  )}
-</div>
 
     </div>
   );
