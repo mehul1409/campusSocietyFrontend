@@ -124,7 +124,7 @@ const Studentdashboard = () => {
         />
         <div>
         <h3>{hub.hubName}</h3>
-        <p>Coordinator Name: {hub.coordinatorId?.name}</p>
+        <p><strong>Coordinator Name:</strong> {hub.coordinatorId?.name}</p>
         </div>
       </div>
     ))

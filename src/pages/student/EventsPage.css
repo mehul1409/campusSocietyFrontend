@@ -42,7 +42,8 @@
   background-color: #0a0f1f;
   border: 1px solid #00d4ff;
   border-radius: 8px;
-  width: 300px;
+  /* width: 300px; */
+  width:95%;
   height:300px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -64,8 +65,8 @@
 
 .event-details-overlay {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 0px;
+  left: 5px;
   padding: 10px;
   border-radius: 8px;
   color: white;
