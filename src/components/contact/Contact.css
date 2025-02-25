@@ -29,18 +29,24 @@
   
   .contact-title1 {
     font-size: 26px;
-    font-family: 'MedievalSharp', cursive;
-    color: #f6f6c4;
+    font-family: "Rye", serif;
+    color: #ffedc8;
+    text-shadow: 0 0 10px #7e4520;
     margin-bottom: 15px;
   }
   
   .contact-form1 input {
     width: 100%;
-    padding: 12px;
     margin: 10px 0;
-    border: none;
-    border-radius: 5px;
     font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #ffffff;
   }
   
   .contact-form1 button {
@@ -51,6 +57,7 @@
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    width:100%;
   }
   
   .contact-form1 button:hover {

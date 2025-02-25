@@ -1,38 +1,40 @@
-  
+  .register-container{
+    background-color: #000814;
+  }
   .register-page {
+    background-color: #000814;
     max-width: 400px;
     margin: 0px auto;
     padding: 20px;
-    background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
   }
   
-  h2 {
+  .register-page h2 {
     text-align: center;
-    color: #333;
+    color: #00d4ff;
     margin-bottom: 20px;
   }
 
-  form {
+  .register-page form {
     display: flex;
     flex-direction: column;
   }
   
-  form div {
+ .register-page form div {
     margin-bottom: 15px;
   }
   
-  label {
+  .register-page label {
     display: block;
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
-    color: #555;
+    color: #00d4ff;
   }
   
-  input,
+  .register-page input,
   select {
     width: 100%;
     padding: 10px;
@@ -40,13 +42,16 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
+    background-color: #000814;
+    color:white;
   }
   
-  input:focus,
+  .register-page input:focus,
   select:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    background-color: #000814;
   }
 
   .already-account-btn {
@@ -63,6 +68,18 @@
   
   .already-account-btn:hover {
     color: #0056b3;
+  }
+
+  .register-page button[type='submit'] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
   .success {
@@ -104,3 +121,11 @@
       transform: rotate(360deg);
     }
   }
+
+ .mainLogoImage .aboveimage{
+  color: #ffffffb3;
+ }
+
+ .mainLogoImage .belowimage{
+  color: #ffffffb3;
+ }

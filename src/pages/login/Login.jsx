@@ -118,6 +118,7 @@ const Login = () => {
   }
 
   return (
+    <div className='login-container'>
     <div className="login-page">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
@@ -161,6 +162,7 @@ const Login = () => {
           "Proudly developed for the Campus Community with passion and dedication."
         </div>
       </div>
+    </div>
     </div>
   );
 };
