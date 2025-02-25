@@ -37,16 +37,11 @@
   
   .contact-form1 input {
     width: 100%;
+    padding: 12px;
     margin: 10px 0;
-    font-size: 16px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
+    border: none;
     border-radius: 5px;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.3s ease;
-    background-color: #ffffff;
+    font-size: 16px;
   }
   
   .contact-form1 button {
@@ -57,7 +52,6 @@
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    width:100%;
   }
   
   .contact-form1 button:hover {
