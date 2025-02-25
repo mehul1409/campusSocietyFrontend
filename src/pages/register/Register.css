@@ -129,3 +129,16 @@
  .mainLogoImage .belowimage{
   color: #ffffffb3;
  }
+
+ .password-rules p {
+  font-size: 14px;
+  margin: 2px 0;
+}
+
+.valid {
+  color: green;
+}
+
+.invalid {
+  color: red;
+}
