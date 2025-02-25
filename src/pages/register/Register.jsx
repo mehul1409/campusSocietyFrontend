@@ -192,7 +192,7 @@ const Register = () => {
                 <label htmlFor="otp">Enter OTP:</label>
                 <input id="otp" type="text" name="otp" value={formData.otp} onChange={handleChange} required />
               </div>
-              <button type="button" onClick={verifyOtpAndRegister}>Verify OTP & Complete Registration</button>
+              <button type="submit" onClick={verifyOtpAndRegister}>Verify OTP</button>
             </>
           )}
         </form>
