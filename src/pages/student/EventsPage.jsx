@@ -52,6 +52,9 @@ const EventsPage = () => {
       } catch (error) {
         console.error('Error fetching data:', error);
         setErrorMessage('An error occurred while fetching data.');
+        setTimeout(()=>{
+          setErrorMessage('')
+        },1500);
       } finally {
         setIsLoading(false);
       }
