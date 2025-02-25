@@ -94,6 +94,7 @@ const Register = () => {
   }
 
   return (
+    <div className='register-container'>
     <div className="register-page">
       <h2>Register</h2>
 
@@ -167,6 +168,7 @@ const Register = () => {
           "Proudly developed for the Campus Community with passion and dedication."
         </div>
       </div>
+    </div>
     </div>
   );
 };
