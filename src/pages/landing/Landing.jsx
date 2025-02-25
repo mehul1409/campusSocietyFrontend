@@ -6,9 +6,9 @@ const Landing = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("isCleared") !== "1") {
+    if (localStorage.getItem("isCleared") !== "2") {
       localStorage.clear();
-      localStorage.setItem("isCleared", "1");
+      localStorage.setItem("isCleared", "2");
     }
   }, []);
 
