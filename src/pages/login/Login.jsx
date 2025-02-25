@@ -17,6 +17,17 @@ const Login = () => {
       setError("Email and Password are required");
       return false;
     }
+
+    if (!formData.role) {
+      setError("Please select a role");
+      return false;
+    }
+  
+    const validRoles = ["student", "spoc", "coordinator"];
+    if (!validRoles.includes(formData.role)) {
+      setError("Invalid role selected");
+      return false;
+    }
     
     if (formData.role === "student") {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
