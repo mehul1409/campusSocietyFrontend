@@ -122,7 +122,7 @@ const PostEvent = () => {
           name="description"
           value={eventDetails.description}
           onChange={handleChange}
-          required
+          // required
         />
       </div>
       <div>
