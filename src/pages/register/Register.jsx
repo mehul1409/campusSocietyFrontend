@@ -93,7 +93,12 @@ const Register = () => {
         setError(response.data.message || 'Failed to send OTP.');
       }
     } catch (err) {
+      if(err.response){
+        setError(err.response.data.message);
+      }
+      else{
       setError('Error sending OTP. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
