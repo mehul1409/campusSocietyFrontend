@@ -15,6 +15,7 @@ const EditEventPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { eventId } = useParams();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Fetch event details and media separately
   useEffect(() => {
@@ -85,6 +86,7 @@ const EditEventPage = () => {
   // Submit the form
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const response = await fetch(`https://campussociety.onrender.com/coordinator/editEvent`, {
@@ -102,10 +104,15 @@ const EditEventPage = () => {
 
       const data = await response.json();
       setSuccessMessage(data.message);
-      setTimeout(() => navigate('/coordinator-dashboard'), 2000);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        navigate('/coordinator-dashboard');
+      }, 1500);
     } catch (error) {
       setErrorMessage('Error updating event. Please try again later.');
       setTimeout(() => setErrorMessage(''), 2000);
+    } finally {
+      setIsSubmitting(false); // Stop loading if an error occurs
     }
   };
 
@@ -184,7 +191,9 @@ const EditEventPage = () => {
           <button type="button" onClick={addMedia}>Add Media</button>
         </div>
 
-        <button type="submit" className="submit-button">Update Event</button>
+        <button type="submit" className="update-submit-button" disabled={isSubmitting}>
+          {isSubmitting ? <div className="loader"></div> : "Update Event"}
+        </button>
       </form>
 
       <hr />

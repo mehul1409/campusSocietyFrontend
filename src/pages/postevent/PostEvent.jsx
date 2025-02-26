@@ -14,6 +14,7 @@ const PostEvent = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +40,7 @@ const PostEvent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     const coordinatordetials = JSON.parse(localStorage.getItem('coordinatordetails'));
     const coordinatorId = coordinatordetials ? coordinatordetials.coordinator._id : null;
@@ -48,6 +50,7 @@ const PostEvent = () => {
       setTimeout(() => {
         setErrorMessage('');
       }, 3000);
+      setIsSubmitting(false);
       return;
     }
 
@@ -93,6 +96,8 @@ const PostEvent = () => {
       setTimeout(() => {
         setErrorMessage('');
       }, 3000);
+    } finally {
+      setIsSubmitting(false); // Stop loading
     }
   };
   return (
@@ -170,7 +175,9 @@ const PostEvent = () => {
             onChange={handleFileChange}
           />
         </div>
-      <button className="post-event-button" type="submit">Post Event</button>
+        <button className="post-event-button" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? <div className="loader"></div> : 'Post Event'}
+        </button>
     </form>
     <hr />
       <div className="mainLogoImage">
