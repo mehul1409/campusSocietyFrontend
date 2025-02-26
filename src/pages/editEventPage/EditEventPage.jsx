@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import './EditEventPage.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import "./EditEventPage.css";
 
 const EditEventPage = () => {
   const [eventDetails, setEventDetails] = useState({
-    title: '',
-    description: '',
-    date: '',
+    title: "",
+    description: "",
+    date: "",
+    eventLinks: [{ name: "", link: "" }],
   });
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { eventId } = useParams();
@@ -17,30 +19,43 @@ const EditEventPage = () => {
   useEffect(() => {
     const fetchEventDetails = async () => {
       try {
-        const response = await fetch(`https://campussociety.onrender.com/coordinator/getEventById/${eventId}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'coordinatorauthorize': localStorage.getItem('coordinatorauthorize'),
-          },
-        });
+        const response = await fetch(
+          `https://campussociety.onrender.com/coordinator/getEventById/${eventId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              coordinatorauthorize: localStorage.getItem(
+                "coordinatorauthorize"
+              ),
+            },
+          }
+        );
 
         if (!response.ok) {
-          throw new Error('Failed to fetch event details');
+          throw new Error("Failed to fetch event details");
         }
 
         const data = await response.json();
         if (data.event) {
           setEventDetails({
-            title: data.event.eventDetails.title || '',
-            description: data.event.eventDetails.description || '',
-            date: data.event.eventDetails.date || '',
+            title: data.event.eventDetails.title || "",
+            description: data.event.eventDetails.description || "",
+            date: data.event.eventDetails.date || "",
+            eventLinks: data.event.media
+              ? data.event.media.map((link) => ({
+                  name: link.name,
+                  link: link.link,
+                }))
+              : [{ name: "", link: "" }],
           });
         } else {
-          setErrorMessage('Event not found');
+          setErrorMessage("Event not found");
         }
       } catch (error) {
-        setErrorMessage('Error fetching event details. Please try again later.');
+        setErrorMessage(
+          "Error fetching event details. Please try again later."
+        );
       } finally {
         setIsLoading(false);
       }
@@ -57,23 +72,58 @@ const EditEventPage = () => {
     }));
   };
 
+  const handleEventLinkChange = (index, field, value) => {
+    const updatedLinks = [...eventDetails.eventLinks];
+    updatedLinks[index][field] = value;
+    setEventDetails((prevDetails) => ({
+      ...prevDetails,
+      eventLinks: updatedLinks,
+    }));
+  };
+
+  const addEventLink = () => {
+    setEventDetails((prevDetails) => ({
+      ...prevDetails,
+      eventLinks: [...prevDetails.eventLinks, { name: "", link: "" }],
+    }));
+  };
+
+  const removeEventLink = (index) => {
+    const updatedLinks = [...eventDetails.eventLinks];
+    updatedLinks.splice(index, 1);
+    setEventDetails((prevDetails) => ({
+      ...prevDetails,
+      eventLinks: updatedLinks,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
+      const formData = new FormData();
+      formData.append('eventId', eventId);
+      formData.append('title', eventDetails.title);
+      formData.append('description', eventDetails.description);
+      formData.append('date', eventDetails.date);
+      formData.append('eventLinks', JSON.stringify(eventDetails.eventLinks));
+  
+      if (file) {
+        formData.append('photo', file);
+      }
+  
       const response = await fetch(`https://campussociety.onrender.com/coordinator/editEvent`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
           'coordinatorauthorize': localStorage.getItem('coordinatorauthorize'),
         },
-        body: JSON.stringify({ eventId, eventDetails }),
+        body: formData,
       });
-
+  
       if (!response.ok) {
         throw new Error('Failed to update event');
       }
-
+  
       const data = await response.json();
       setSuccessMessage(data.message);
       setTimeout(() => navigate('/coordinator-dashboard'), 2000);
@@ -96,7 +146,9 @@ const EditEventPage = () => {
       <h1>Edit Event</h1>
 
       {errorMessage && <div className="error-message">{errorMessage}</div>}
-      {successMessage && <div className="success-message">{successMessage}</div>}
+      {successMessage && (
+        <div className="success-message">{successMessage}</div>
+      )}
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -134,7 +186,49 @@ const EditEventPage = () => {
             required
           />
         </div>
-        <button type="submit" className="submit-button">Update Event</button>
+        <div className="form-group">
+          <label>Event Links</label>
+          {eventDetails.eventLinks.map((event, index) => (
+            <div key={index} className="event-link-container">
+              <input
+                type="text"
+                placeholder="Event Name"
+                value={event.name}
+                onChange={(e) =>
+                  handleEventLinkChange(index, "name", e.target.value)
+                }
+              />
+              <input
+                type="text"
+                placeholder="Event Link"
+                value={event.link}
+                onChange={(e) =>
+                  handleEventLinkChange(index, "link", e.target.value)
+                }
+              />
+              {eventDetails.eventLinks.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeEventLink(index)}
+                  className="remove-link-button"
+                >
+                  -
+                </button>
+              )}
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addEventLink}
+            className="add-link-button"
+          >
+            + Add More
+          </button>
+        </div>
+
+        <button type="submit" className="submit-button">
+          Update Event
+        </button>
       </form>
       <hr />
       <div className="mainLogoImage">
@@ -143,7 +237,8 @@ const EditEventPage = () => {
         </div>
         <img src="/mainLogo.png" alt="" />
         <div className="belowimage">
-          "Proudly developed for the Campus Community with passion and dedication."
+          "Proudly developed for the Campus Community with passion and
+          dedication."
         </div>
       </div>
     </div>
