@@ -43,7 +43,7 @@ const PostEvent = () => {
     const coordinatordetials = JSON.parse(localStorage.getItem('coordinatordetails'));
     const coordinatorId = coordinatordetials ? coordinatordetials.coordinator._id : null;
 
-    if (!eventDetails.title || !eventDetails.description) {
+    if (!eventDetails.title) {
       setErrorMessage('All fields are required.');
       setTimeout(() => {
         setErrorMessage('');
