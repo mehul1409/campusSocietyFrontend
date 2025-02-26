@@ -21,10 +21,10 @@ const Footer = () => {
         <div className="footer-section footer-socials">
           <h4>Follow Us</h4>
           <ul className="social-media-links">
-            <li><a href="https://facebook.com/campussociety" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><a href="https://twitter.com/campussociety" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-            <li><a href="https://instagram.com/campussociety" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a href="https://linkedin.com/company/campussociety" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="">Facebook</a></li>
+            <li><a href="">Twitter</a></li>
+            <li><a href="">Instagram</a></li>
+            <li><a href="">LinkedIn</a></li>
           </ul>
         </div>
         </div>
