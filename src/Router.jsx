@@ -27,7 +27,7 @@ const AppRouter = () => {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path='/student-dashboard' element={<Studentdashboard />} />
+            <Route path='/student-dashboard' element={<PrivateRoute element={<Studentdashboard />}/>} />
             <Route path='/coordinator-dashboard' element={<Coordinatordashboard />} />
             <Route path='/spoc-dashboard' element={<Spocdashboard />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
